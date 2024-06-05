@@ -1,0 +1,88 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+section {
+    padding: 25px 30px 25px 110px;
+    background-color: #EBEEF4;
+}
+
+.box {
+    background-color: #f9f5f3;
+    border-radius: 8px;
+    padding: 30px 30px 55px 30px;
+    box-shadow: 0 0 15px 2px lightgray;
+}
+
+.orange {
+    color: #ee6c1f;
+}
+
+.col-lg-3 {
+    padding: 12px 36px 0px 40px;
+}
+
+@media(min-width:560px) and (max-width:1020px) {
+    .col-lg-3 {
+        padding: 12px 17px 0 17px !important;
+    }
+}
+
+@media(min-width:1020px) and (max-width:1075px) {
+    .col-lg-3 {
+        padding: 12px 17px 0 17px !important;
+    }
+}
+
+.grid8 {
+    height: 140px;
+    border: 2px solid white;
+    border-radius: 6px;
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+    box-shadow: 0 0 15px 2px lightgray;
+}
+
+    .grid8 p {
+        margin-top: 5px;
+    }
+
+/*DROPDOWN*/
+
+.drpdown {
+}
+
+.drpdown-menu {
+    display: none;
+    position: absolute;
+    background-color: lightgray;
+    min-width: 263px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top: 23px;
+    z-index: 1;
+    left: 13px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.drpbtn {
+    cursor: pointer;
+}
+
+.drpdown-menu button {
+    display: block;
+}
+
+
+.drpdown:hover .drpdown-menu {
+    display: block;
+    display: flex;
+}
+
+.drpdown-item {
+    margin-left: 10px;
+}

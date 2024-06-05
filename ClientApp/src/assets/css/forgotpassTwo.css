@@ -1,0 +1,89 @@
+﻿body {
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.bkg {
+    background-image: url(/assets/img/plane.png);
+}
+
+.card {
+    width: 450px;
+    height: 470px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.circle {
+    display: block;
+    text-align: center;
+    font-size: 50px !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    margin: 0 auto;
+    color: #fff;
+    background: #f87831;
+    line-height: 80px;
+}
+
+.forget {
+    text-align: left;
+    color: #f87831;
+    font-weight: 900;
+    padding: 20px 0;
+    margin: 0 0 0;
+}
+
+.txt1 {
+    color: #696969;
+    line-height: 1.9;
+    text-align: center;
+    font-weight: 700;
+}
+
+.txt2 {
+    color: #696969;
+    line-height: 1.9;
+    text-align: center;
+    font-weight: 400;
+}
+
+.btn1 {
+    background: #e6e6e6;
+    width: 130px;
+    height: 35px;
+    display: block;
+    text-align: center;
+    color: #333;
+    border: none;
+    border-radius: 3px;
+    margin-top: 30px;
+}
+
+.btn2 {
+    background: #163c81;
+    width: 130px;
+    height: 35px;
+    display: block;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    margin-top: 30px;
+}
+
+.btn-resend {
+    height: 30px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    background-color: navy;
+    color: white;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 118px;
+    font-size: 12px;
+}

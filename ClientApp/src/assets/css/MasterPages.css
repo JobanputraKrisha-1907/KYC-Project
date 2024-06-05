@@ -1,0 +1,113 @@
+﻿body {
+}
+
+.for-navbar-flex {
+    display: flex;
+    justify-content: space-between;
+    height: 96px;
+    align-items: center;
+    margin-left: 120px;
+    margin-right: 110px;
+}
+
+.for-link-flex {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0 15px;
+}
+
+    .for-link-flex a {
+        font-size: 13px;
+        letter-spacing: 0.2px;
+    }
+
+.for-mar {
+    margin-right: 30px
+}
+
+.fund-logo {
+    width: 260px;
+    height: 56px;
+}
+
+/* sidenav*/
+nav {
+    position: absolute;
+    top: 95px;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 9999;
+}
+
+.for-mrg-icon {
+    margin-right: 5px;
+}
+
+.main-nav {
+    background-color: rgba(20,60,129,255);
+    border-width: 4px;
+}
+
+.nav-btn {
+    background-color: rgba(20,60,129,255);
+    border: none;
+    width: 100%;
+    align-content: center;
+    padding: 10px 0px;
+}
+
+    .nav-btn:hover {
+        background-color: rgba(255,122,41,255);
+        transition: 0.4s;
+    }
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+/* button:hover {
+            background-color: rgba(255,122,41,255);
+            transition: 0.4s;
+        }*/
+
+
+hr {
+    background-color: white;
+    margin: 0px;
+}
+
+.text-nav {
+    color: white;
+    font-size: 12px;
+}
+/*Footer*/
+.logos {
+    margin: 10px 100px 0px 105px;
+    background-color: #ccdbeb;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.footer {
+    height: 120px;
+    color: black;
+    font-size: 10px;
+    padding-top: 10px;
+    text-align: center;
+    margin: 10px 100px 0px 105px;
+}
+
+.for-signout {
+    height: 40px;
+    width: 120px;
+    border: none;
+    background-color: #ff7a29;
+    border-radius: 5px;
+    font-size: 17px;
+    color: #fff;
+}

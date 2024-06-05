@@ -1,0 +1,198 @@
+﻿nav {
+    position: relative;
+    top: -540px;
+    height: 90%;
+    bottom: 0;
+    left: 0;
+    height: 550px;
+    width: 80px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.main-nav {
+    background-color: rgba(22,60,129,255);
+    border-width: 4px;
+}
+
+.nav-btn {
+    background-color: rgba(20,60,129,255);
+    border: none;
+    align-content: center;
+    padding: 10px 0px;
+    width: 80px;
+}
+
+    .nav-btn:hover {
+        background-color: rgba(255,122,41,255);
+        transition: 0.4s;
+    }
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+.text-nav {
+    color: white;
+    font-size: 12px;
+}
+
+.abc {
+    margin-top: 60px;
+    margin-left: 105px;
+    padding: 15px;
+    width: 1150px;
+    background-color: white;
+    box-shadow: grey 0px 0px 15px 4px;
+}
+
+.name-1 {
+    color: darkblue;
+    font-size: 20px;
+}
+
+.name-2 {
+    color: orangered;
+    font-size: 20px;
+}
+
+.status span {
+    font-weight: 600;
+    color: orangered;
+    font-size: 16px;
+}
+
+.status p {
+    font-weight: 600;
+}
+.badge{
+    font-size:100% !important;
+    font-weight:500!important
+}
+.status {
+    border-bottom: 1px dotted grey;
+}
+
+.status-info {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted grey;
+}
+
+    .status-info p {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+.instruction {
+    float: left;
+}
+
+.edit-person {
+    float: right;
+    padding: 0px;
+}
+
+.editpart {
+    background-color: #f1f1f1;
+    height: 80px;
+    width: 500px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+    .editpart p, b {
+        color: orangered;
+        font-size: 14px;
+    }
+
+    .editpart p {
+        padding-top: 10px;
+        font-size: 16px;
+    }
+
+    .editpart .fa-edit, span {
+        color: darkblue;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+.suggestion {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted grey;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.suggestion1 li {
+    font-weight: 400;
+    padding-bottom: 7px
+}
+
+.suggestion1 {
+    float: left;
+}
+
+.suggestion2 {
+    float: right;
+}
+
+    .suggestion2 li {
+        font-weight: 400;
+        padding-bottom: 7px
+    }
+
+.bttn {
+    height: 30px;
+    width: 120px;
+    background-color: orangered;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    padding: 0px;
+}
+
+.bg {
+    background-color: #ebeef4;
+    height: 580px;
+    width: 1349px;
+}
+
+.bttn:focus, .bttn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.Contact-Details {
+    background-color: #f1f1f1;
+    height: 70px;
+    width: 500px;
+}
+
+    .Contact-Details p {
+        color: orangered;
+        padding: 5px 0px 0px 10px;
+    }
+
+    .Contact-Details a {
+        text-decoration: none;
+        color: darkblue;
+        padding: 0px 0px 0px 10px;
+    }
+
+/*        .space {
+            margin-left: 150px;
+        }*/
+.pageName {
+    position: relative;
+    width: 500px;
+    left: 105px;
+    top: 30px;
+    font-weight: 400;
+    font-size: 20px;
+}

@@ -1,0 +1,233 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+
+<div class="container">
+
+    <div class="main_container">
+        <div class="cardBody ">
+            <div class="card rounded shadow border-0">
+                <h4><span style="color:orangered">New </span><span style="color: #163c81"> Requests</span> </h4>
+            </div>
+
+            <div class="card rounded shadow border-0">
+                <div class="card-body  bg-white rounded">
+
+
+                    <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="tabChanged($event)">
+                        <mat-tab label="Identity Verification">
+                            <table class="table table-hover" *ngFor="let item of ClientData">
+                               
+                                <tbody >
+                                    <tr>
+                                        <td>Client Id</td>
+                                        <td>{{item.ClientId}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{{item.Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pan No</td>
+                                        <td>{{item.PanNo}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Of Birth</td>
+                                        <td>{{item.DOB}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Annual Income</td>
+                                        <td>{{item.AnnualIncome}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marital Status</td>
+                                        <td>{{item.MaritalStatus}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Occupation</td>
+                                        <td>
+                                            {{item.OccupationName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mother Name</td>
+                                        <td>{{item.MotherName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pan Card Document</td>
+                                        <td>{{item.PancardProofDoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><button class="Reject_Btn" (click)="IdentityReject()">Reject</button></td>
+                                        <td><button class="Next_Btn" (click)="NextTab()">Next</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-tab>
+                        <mat-tab label="Address Verification">
+                            <table class="table table-hover" *ngFor="let item of ClientData">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"> </th>
+                                        <th scope="col">Correspondence Address</th>
+                                        <th scope="col">Permanent Address</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Address Line 1</td>
+                                        <td>{{item.CAddressLine1}}</td>
+                                        <td>{{item.PAddressLine1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address Line 2</td>
+                                        <td>{{item.CAddressLine2}}</td>
+                                        <td>{{item.PAddressLine2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address Line 3</td>
+                                        <td>{{item.CAddressLine3}}</td>
+                                        <td>{{item.PAddressLine3}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country</td>
+                                        <td>{{item.CountryName}}</td>
+                                        <td>{{item.CountryName1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>State</td>
+                                        <td>{{item.StateName}}</td>
+                                        <td>{{item.StateName1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>{{item.CCity}}</td>
+                                        <td>{{item.PCity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pincode</td>
+                                        <td>{{item.CPinCode}}</td>
+                                        <td>{{item.PPinCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address Proof Document</td>
+                                        <td>{{item.CAddressProofDoc}}</td>
+                                        <td>{{item.PAddressProofDoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><button class="Reject_Btn" (click)="AddressReject()">Reject</button></td>
+                                        <td><button class="Next_Btn" (click)="NextTab()">Next</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-tab>
+                        <mat-tab label="Bank Verification">
+                            <table class="table table-hover" *ngFor="let item of ClientData">
+
+                                <tbody>
+                                    <tr>
+                                        <td>Bank Name</td>
+
+                                        <td>{{item.BankName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IFSC Code</td>
+                                        <td>{{item.IFSCCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MICR Code</td>
+                                        <td>{{item.MICRCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank Branch</td>
+                                        <td>{{item.BankBranch}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank City</td>
+                                        <td>{{item.BankCity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account Type</td>
+                                        <td>{{item.AccountType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account Number</td>
+                                        <td>{{item.BankAcNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mode Of Holding</td>
+                                        <td>{{item.ModeOfHolding}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Holder Name</td>
+                                        <td>{{item.AccHolderName1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Second Holder Name</td>
+                                        <td>{{item.AccHolderName2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Third Holder Name</td>
+                                        <td>{{item.AccHolderName3}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cancel Cheque Document</td>
+                                        <td>{{item.CancelChequeDoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank Statement Document</td>
+                                        <td>{{item.BankStatementDoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signature Document</td>
+                                        <td>{{item.SignatureDoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><button class="Reject_Btn" (click)="BankReject()">Reject</button></td>
+                                        <td><button class="Next_Btn" (click)="NextTab()">Next</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-tab>
+                        <mat-tab label="IPV Verification">
+                            <table class="table table-hover">
+
+                                <tbody>
+                                    <tr>
+                                        <td>IPV Client Video </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IPV Client Image</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button class="Reject_Btn" (click)="IPVReject()">Reject</button></td>
+                                        <td><button class="Next_Btn" (click)="NextTab()">Next</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-tab>
+                        <mat-tab label="Esign Verification">
+                            <table class="table table-hover">
+
+                                <tbody>
+                                   
+                                    <tr>
+                                        <td><button class="Verify_Btn" (click)="ApprovedClientRequest()">Verify</button></td>
+                                        <td><button class="Reject_Btn" (click)="EsignReject()">Reject</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-tab>
+                    </mat-tab-group>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-master-footer></app-master-footer>

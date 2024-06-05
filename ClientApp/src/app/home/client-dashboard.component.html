@@ -1,0 +1,76 @@
+﻿<app-master-header></app-master-header>
+<app-master-nav></app-master-nav>
+<div class="bg">
+    <h6 class="pageName">
+        FundzBazar <span class="name-1">Account </span><span class="name-2">Status</span>
+    </h6>
+    <div class="abc">
+        <div class="status">
+            <p>
+                Congrtulations !! <span> {{clientName}}</span>
+            </p>
+        </div>
+        <div class="status-info">
+            <div class="instruction">
+                <p>
+                    We have Received all information required for you to start investing in Mutual<br />Funds and other Products.
+                </p>
+                <p>
+                    Our back Office team will verify the same and mail you to FundzBazar  <br />registration
+                    Detail & NACH mandate
+                </p>
+            </div>
+            <div class="edit-person">
+                <div class="editpart">
+                    <p>{{clientName}}</p>
+                    <button style="border:none" (click)="EditClientData()">
+
+                        <i class="fa fa-edit"><span>CHANGE</span></i>
+                    </button>
+
+                </div>
+                <p>
+                    Your Kyc Process -->  
+                        <label  *ngIf="kyc" class="badge " [ngClass]="[KycProcess === 'NewRequest' ? 'badge-primary' : '',KycProcess === 'Approved' ? 'badge-success' : '']"> {{KycProcess}}</label>
+                        <label *ngIf="kycRejected" class="badge  badge-danger">{{KycProcess}}</label>
+                   
+                </p>
+            </div>
+        </div>
+        <div class="suggestion">
+            <div class="suggestion1">
+                <p> Now for investiing in Direct stocks, you are just two steps away to Open <br />your Demat & Trading Account </p>
+                <ul>
+                    <li>
+                        Undergo IPV
+                    </li>
+                    <li>
+                        Regestration through Aadhaar based e-sign
+                    </li>
+                </ul>
+                <button class="bttn akshar">Continue</button>
+            </div>
+            <div class="suggestion2">
+                <p>Documents that will be mailed to you:</p>
+                <ul>
+                    <li>
+                        FundzBazar Account Opening Form
+                    </li>
+                    <li>
+                        FATCA & CRS Declaration Form
+                    </li>
+                    <li>
+                        NACH Mandate (Signed Copy should be Returned)
+                    </li>
+                </ul>
+                <div class="Contact-Details">
+                    <p> NEED ASSISTANCE? </p>
+                    <a href="#"> <i class='fa fa-fax' style="font-size:14px; color: darkblue"></i> 1800 419 5051 </a>
+                    <a href="#" class="space"><i class="fa fa-wechat" style="font-size: 14px; color: darkblue"> Chat with Us</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<app-master-footer></app-master-footer>

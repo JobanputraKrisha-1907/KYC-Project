@@ -1,0 +1,75 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+<div style=" padding: 25px 30px 25px 110px; background-color: #EBEEF4;">
+
+    <div class="container  Main_cards">
+        <div class="card-grid">
+            <div class="card">
+                <span class="card-span">
+                    <i class="fa">&#xf0c5;</i> <br />
+                    <span style="color: #163c81;font-weight:600"> Total request</span>
+                </span>
+                <button class="card-button" (click)="viewTotalRequest()">
+                    <span style=" font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+            <div class="card">
+                <span class="card-span">
+                    <i class="fa">&#xf252;</i><br />
+                    <span style="color: #163c81;font-weight:600"> Under Process</span>
+
+                </span>
+                <button class="card-button" (click)="viewUnderProcessRequest()">
+                    <span style="font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+            <div class="card">
+                <span class="card-span">
+                    <i class="fa">&#xf234;</i><br />
+                    <span style="color: #163c81;font-weight:600"> New Request Received</span>
+                </span>
+                <button class="card-button" (click)="viewNewRequest()">
+                    <span style="font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+            <div class="card">
+
+                <span class="card-span">
+                    <i class="fa">&#xf046;</i> <br />
+                    <span style="color: #163c81;font-weight:600">Kyc Approved</span>
+                </span>
+                <button class="card-button" (click)="viewKycApproved()">
+                    <span style="font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+
+            <div class="card">
+                <span class="card-span">
+                    <i class="fa">&#xf057;</i><br />
+                    <span style="color: #163c81;font-weight:600">Rejected</span>
+                </span>
+                <button class="card-button" (click)="viewRejectedRequest()">
+                    <span style="font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+
+
+            <div class="card">
+                <span class="card-span">
+                    <i class="fa">&#xf0fe;</i> <br />
+                    <span style="color: #163c81;font-weight:600">Add master table data</span>
+                </span>
+                <button class="card-button" (click)="addMasterData()">
+                    <span style="font-size: 18px; margin-right: 145px;">View Details</span>
+                    <i style="font-size:20px" class="fa">&#xf101;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-master-footer></app-master-footer>

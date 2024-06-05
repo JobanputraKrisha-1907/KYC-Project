@@ -1,0 +1,262 @@
+﻿* {
+    font-family: "Poppins",sans-serif;
+}
+body {
+}
+
+.header {
+    margin: 25px 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+#img1 {
+    height: 62px;
+    width: 285px;
+}
+
+.copyright {
+    padding: 20px 0;
+    margin: 0px 130px;
+}
+
+.footer_image {
+    width: 165px;
+    text-align: center;
+}
+
+    .footer_image span {
+        font-size: 12px;
+        color: gray;
+    }
+
+    .footer_image img {
+        width: 90px;
+        height: 45px;
+    }
+
+.footer_prulogo {
+    max-width: 100%;
+    height: auto;
+}
+
+.p {
+    text-align: center;
+    color: gray;
+    font-size: 9.5px;
+    text-indent: 15px;
+}
+
+.section_login {
+    background-image: url('/login_new_bg_2.83a8c2b9eca713728cb3.jpg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 680px;
+    position: relative;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+h2.Investor_num {
+    font-size: 25px !important;
+    font-weight: 300;
+    line-height: 0.9;
+}
+
+.color-orange {
+    font-weight: 700;
+    color: #ee6c1f;
+    font-size: 45px;
+}
+
+    .color-orange.weightOrnage {
+        font-weight: 400;
+    }
+
+.join_Btn {
+    background-color: #163c81;
+    margin-top: 25px;
+    width: 170px;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.join_Btn_content {
+    color: #333;
+    font-size: 19px;
+    margin-top: 40px;
+}
+
+.SignUp_heading {
+    color: #163c81;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.SignIn_heading_content {
+    color: #333;
+    font-size: 19px;
+    margin-bottom: 0;
+}
+
+.sec_login {
+    margin: 35px 110px;
+    position: absolute;
+    width: 1280px;
+    height: 610px;
+}
+
+.SignUp_section {
+    padding-top: 50px;
+    background: #f1f1f1;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.SingIn_section {
+    padding-top: 50px;
+    background: white;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.SignIn_heading {
+    color: #ee6c1f;
+    margin-bottom: 25px;
+}
+
+.txtBox {
+    height: 45px !important;
+    line-height: 45px !important;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    font-size: 14px;
+    transition: all .3s ease;
+    width: 330px;
+    padding: .7rem !important;
+    color: #495057;
+    background-color: #fff;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.toast-container * {
+    box-sizing: border-box;
+}
+
+.toast-container {
+    pointer-events: none;
+    position: fixed;
+    z-index: 999999;
+
+}
+
+.toast-center-center {
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+}
+
+.toast-container .ngx-toastr {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px;
+    background-position: 15px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    box-shadow: 0 0 12px #999;
+    color: #fff;
+}
+
+.ngx-toastr {
+    background-color: #030303;
+    pointer-events: auto;
+}
+
+.toast-error {
+    background-color: #bd362f;
+    background-image: url(/assets/img/times-circle-svgrepo-com.svg);
+}
+
+.toast-container .ngx-toastr:hover {
+    box-shadow: 0 0 12px #000;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.SingIn_Links {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 330px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.forgot_pass_link {
+    color: #163c81;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff7a29;
+}
+
+.otp_link {
+    color: #ff7a29;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.SignIn_Btn {
+    background-color: #ff7a29;
+    background: #ee6c1f;
+    color: #fff;
+    width: 170px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    margin-top: 30px !important;
+}
+
+    .SignIn_Btn:hover {
+        opacity: 0.7;
+    }
+
+.SignIn_cerficate_links {
+    margin-top: 40px;
+}
+
+.img_links {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+.about_links {
+    color: #000;
+    text-decoration: none;
+    font: 700 8px verdana,sans-serif;
+    letter-spacing: .5px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}

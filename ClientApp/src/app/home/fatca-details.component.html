@@ -1,0 +1,221 @@
+﻿<app-master-header></app-master-header>
+<br />
+
+<html>
+
+<head>
+
+</head>
+<body>
+    <div class="PEP">
+        <div id="div1">
+            <header class="header" style="font-weight: 700">
+                <span style="color: #f56714;">Individual-</span>Nominee & FATCA Details
+                <p class="FatcaHead" id="fatcaHead" (click)=" Collapse()">
+                    FATCA Details
+                    <button type="button" *ngIf="FatcaData" value="+" style="background-color:inherit;outline:none;border:none;float:right;color:orangered;margin-right:10px">+</button>
+                    <button type="button" *ngIf="!FatcaData" value="-" style="background-color:inherit;outline:none;border:none;float:right;color:orangered;margin-right:10px">-</button>
+                </p>
+            </header>
+        </div>
+        <form class="pl-4 pr-4" #FatcaDaetails="ngForm"  *ngIf="!FatcaData" id="fatcaDetails">
+            <div id="PEPQ">
+                <div>
+                    Are you politcally exposed preson?
+                    <span class="error" *ngIf="YPEP.errors?.required && submitted">*</span>
+                    <a href="https://insights.namescan.io/knowledgebase/politically-exposed-person" target="_blank" id="PEPques">What is PEP?</a>
+                </div>
+                <div>
+                    <label class="ml-1 mr-1">
+                        <input type="radio" name="PEP" value="Yes" [(ngModel)]="Yes" #YPEP="ngModel" required />
+                        I am PEP
+                    </label>
+                    <label class="ml-1 mr-1">
+                        <input type="radio" name="PEP" value="Other" [(ngModel)]="Other" #RPEP="ngModel" required />
+                        I am related to PEP
+                    </label>
+                    <label class="ml-1 mr-1">
+                        <input type="radio" name="PEP" value="No" [(ngModel)]="No" #NPEP="ngModel" required />
+                        Not Applicable
+                    </label>
+                </div>
+            </div>
+            <div class="MainDiv">
+                <div class="row">
+                    <div class="col-4 mt-1 mb-1 LabelAddressData">
+                        <label class="LabelAddress">
+                            Address Type
+                            <span class="error" *ngIf="LabelAddData.errors?.required && submitted">*</span>
+                        </label><br />
+                        <select class="LabelAddData col-12 pl-2" name="LabelAddData" [(ngModel)]="AddressType" #LabelAddData="ngModel" required>
+                            <option value="undefined" selected disabled hidden>--Select--</option>
+                            <option *ngFor="let item of AddressTypeData" value="{{item.Id}}">{{item.AddressType}}</option>
+                        </select>
+                    </div>
+                    <div class="col-4 mt-1 mb-1 LabelSOWData">
+                        <label class="LabelSW">Source of Wealth</label>
+                        <span class="error" *ngIf="LabelSWData.errors?.required && submitted">*</span><br />
+                        <select class="LabelSWData col-12 pl-2" name="LabelSWData" id="1" [(ngModel)]="SourceOfWealth" #LabelSWData="ngModel" required>
+                            <option value="undefined" selected disabled hidden>--Select--</option>
+                            <option *ngFor="let item of SourceOfWeathData" value="{{item.Id}}">{{item.SourceOfWealth}}</option>
+                        </select>
+                    </div>
+                    <div class="col-4 mt-1 mb-1 LabelPOBDa">
+                        <label class="LabelPOB">Place of Birth</label>
+                        <span class="error" *ngIf="Placeofbirth.errors?.required && submitted">*</span><br />
+                        <input class="col-12" type="text" name="Placeofbirth" #Placeofbirth="ngModel" [(ngModel)]="PlaceOfBirth" required />
+                        <br />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 mt-1 mb-1 LabelCOBDa">
+                        <label class="LabelCOB">Country of birth</label>
+                        <span class="error" *ngIf="LabelCOBData.errors?.required && submitted">*</span><br />
+                        <select class="LabelCOBData col-12 pl-2" name="LabelCOBData" #LabelCOBData="ngModel" [(ngModel)]="CountryOfBirth" required>
+                            <option value="undefined" selected disabled hidden>--Select--</option>
+                            <option *ngFor="let item of CountryOfBirthData" value="{{item.CountryId}}">{{item.CountryName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-4 mt-1 mb-1 NationalityData">
+                        <label class="LabelNationality">Nationality</label>
+                        <span class="error" *ngIf="LabelNationalityData.errors?.required && submitted">*</span><br />
+                        <select class="LabelNationalityData col-12 pl-2" name="LabelNationalityData" #LabelNationalityData="ngModel" [(ngModel)]="Nationality" required>
+                            <option value="undefined" selected disabled hidden>--Select--</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Canadian">Canadian</option>
+                            <option value="American">American</option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-4 mt-1 mb-1 NationalityData">
+                         <label class="LabelNationality">
+                             Nationality <span class="error" *ngIf="LabelNationalityData.errors?.required && submitted">*</span><br />
+                             <select class="LabelNationalityData col-12 pl-2" name="LabelNationalityData" ngModel #LabelNationalityData="ngModel" required>
+
+                                 <option value="Indian">Indian</option>
+                                 <option value="Canadian">Canadian</option>
+                                 <option value="American">American</option>
+                                 <option *ngFor="let item of NationalityData" value="{{item.Nationality}}">{{item.Nationality}}</option>
+                             </select>
+                         </label>
+                     </div>-->
+
+                    <div class="col-4 mt-1 mb-1 Tax">
+                        <label class="LabelTaxHead" name="LabelTaxHead">Are you a resident for tax purpose in any country other than India?</label>
+                        <span class="error" *ngIf="TaxpurposeYes.errors?.required && submitted">*</span>
+                        <br />
+                        <label>
+
+                            <input type="radio" required name="Taxpurpose" [(ngModel)]="Taxpurposevalue" #TaxpurposeYes="ngModel" value="yes" (click)="TaxDetails(yes)" class="col-1" />
+
+                            Yes
+                        </label>
+                        <label>
+                            <input type="radio" required name="Taxpurpose" [(ngModel)]="Taxpurposevalue" #TaxpurposeNo="ngModel" value="no" (click)="TaxDetails(no)" class="col-1" />
+                            No
+                        </label><br />
+                    </div>
+                </div>
+                <div *ngIf="TaxData" class="row">
+                    <div class="col-4 COT">
+                        <label class="LabelCOT  mt-1 mb-1">
+                            Country of TAX Residency#<span class="error" *ngIf="LabelCOTData.errors?.required && submitted">*</span>
+                            <select class="LabelCOTData  col-12 mt-1 mb-1" name="LabelCOTData" ngModel required #LabelCOTData="ngModel">
+                                <option value="">--Select--</option>
+                                <option value="India">India</option>
+                                <option value="Aus">Aus</option>
+                                <option value="America">America</option>
+                            </select>
+
+                            <select class="LabelCOTData  col-12 mt-1 mb-1" name="LabelCOTData" ngModel required #LabelCOTData="ngModel">
+                                <option value="">--Select--</option>
+                                <option value="India">India</option>
+                                <option value="Aus">Aus</option>
+                                <option value="America">America</option>
+                            </select>
+                            <select class="LabelCOTData  col-12 mt-1 mb-1" name="LabelCOTData" ngModel required #LabelCOTData="ngModel">
+                                <option value="">--Select--</option>
+                                <option value="India">India</option>
+                                <option value="Aus">Aus</option>
+                                <option value="America">America</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-4 TINo">
+                        <label class="LabelTINo">Tax Identification Number*</label>
+                        <span class="error" *ngIf="TaxIdNo.errors?.required && submitted">*</span>
+                        <input type="text" required class="col-12 mt-1 mb-1" name="TaxIdNo" ngModel #TaxIdNo="ngModel" placeholder="Tax Identification Number" />
+                        <input type="text" required class="col-12 mt-1 mb-1" name="TaxIdNo" ngModel #TaxIdNo="ngModel" placeholder="Tax Identification Number" />
+                        <input type="text" required class="col-12 mt-1 mb-1" name="TaxIdNo" ngModel #TaxIdNo="ngModel" placeholder="Tax Identification Number" />
+                    </div>
+                    <div class="col-4 TIT">
+                        <label class="LabelTIT">Tax Identification Type</label><span class="error" *ngIf="LabelTITData.errors?.required && submitted">*</span>
+                        <select class="LabelTITData col-12 mt-1 mb-1" name="LabelTITData" ngModel required #LabelTITData="ngModel">
+                            <option value="">--Select--</option>
+                            <option value="India">India</option>
+                            <option value="Aus">Aus</option>
+                            <option value="America">America</option>
+                        </select>
+                        <select class="LabelTITData col-12 mt-1 mb-1" name="LabelTITData" ngModel required #LabelTITData="ngModel">
+                            <option value="">--Select--</option>
+                            <option value="India">India</option>
+                            <option value="Aus">Aus</option>
+                            <option value="America">America</option>
+                        </select>
+                        <select class="LabelTITData col-12 mt-1 mb-1" name="LabelTITData" ngModel required #LabelTITData="ngModel">
+                            <option value="">--Select--</option>
+                            <option value="India">India</option>
+                            <option value="Aus">Aus</option>
+                            <option value="America">America</option>
+                        </select>
+                        <br />
+                    </div>
+
+                </div>
+                <div *ngIf="TaxData" class="row mt-1 mb-1 msg">
+                    <p class="col-12">
+                        # to include all countries other than India,where investor is Citizen/Resdient/Green Card Holder/Tax Resident in those respective countries especially of USA.<br />
+                        *In case Tax Identification Number is not available,kindly provide its functional equivalent(refer FATCA & CRS Trems & conditions for more details)
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="fatcamsg">
+                <label class="FatcaMessage">
+                    <input type="checkbox" required name="FatcaMessage1" />
+                    I/We acknowledge and confirm that the information provided above is true and correct to the best of my/our knowledge and belief. In case any of the above specified information is found to be false or untrue or misleading or misrepresenting, I/We am/are aware that I/We may liable for it. i/we also confirm that i/we have read and understood the
+                    <a href="">
+                        FATCA & CRS Instructions & Terms and Conditions.
+                    </a>
+                    <a href="" style="float:right">
+                        Read More
+                    </a>
+                </label>
+
+                <label class="FatcaMessage">
+                    <input type="checkbox" required name="FatcaMessage2" />
+
+                    I hereby allow Prudent to utilize my KYC information such as identity (Name, PAN, Age, etc.) and address for sending it to Asset Management Companies (AMCs) for the purpose of validation and to comply with the legal and regulatory requirements.
+
+
+                    <a href="" style="float:right">Read more</a>
+
+                </label>
+            </div>
+            <div class="FatcaMessage3">
+                <label>
+                    <input type="checkbox" name="FatcaMessage3" />
+                    I agree to the Terms & Conditions
+                </label>
+                <br />
+                <br />
+                <button type="submit" class="NextPg" name="NextPg" id="nextPg" (click)="Submit(FatcaDaetails)">Next</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<br />
+<app-master-footer></app-master-footer>

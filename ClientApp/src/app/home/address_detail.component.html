@@ -1,0 +1,187 @@
+﻿<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+-->
+<app-master-header></app-master-header>
+<br />
+
+<div class="main-div container">
+
+    <div class="heading">
+        <label>Broking Account - </label>
+        <span> Additional Information</span>
+    </div>
+
+    <form #frmRegister="ngForm">
+        <div class="address">
+
+            <!--Correspondence Address-->
+
+            <div class="caddress">
+
+                <label id="cadd">Correspondence Address</label><br />
+
+                <label>Address Line 1</label>
+                <input type="text" [(ngModel)]="caddline1" #cadd1="ngModel" name="cadd1" id="coradd1" class="form-control" placeholder="House No./Flat Name" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cadd1.errors?.required) || (cadd1.errors?.required && cadd1.touched)">Enter Your House No./Flat Name</div>
+
+                <label>Address Line 2</label>
+                <input type="text" [(ngModel)]="caddline2" #cadd2="ngModel" name="cadd2" class="form-control" placeholder="Street Name" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cadd2.errors?.required) || (cadd2.errors?.required && cadd2.touched)">Enter Your Street Name</div>
+
+                <label>Address Line 3</label>
+                <input type="text" [(ngModel)]="caddline3" #cadd3="ngModel" name="cadd3" class="form-control" placeholder="Landmark" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cadd3.errors?.required) || (cadd3.errors?.required && cadd3.touched)">Enter Landmark</div>
+
+                <label>Country</label>
+                <select [(ngModel)]="ccountry" #ccon="ngModel" name="ccon" class="form-control" (focusout)="forSameCountry()" (change)="onSelectCorCountry()" required>
+                    <option value="undefined" selected disabled hidden>--Select--</option>
+                    <ng-container *ngFor="let item of datacountry">
+                        <option value="{{item.CountryId}}">{{item.CountryName}}</option>
+                    </ng-container>
+                </select>
+                <div class="text-danger" *ngIf="(frmRegister.submitted && ccon.errors?.required) || (ccon.errors?.required && ccon.touched)">Enter Your Country</div>
+
+                <label>State</label>
+                <select [(ngModel)]="cstate" #cstat="ngModel" (focusout)="forSameState()" name="cstat" class="form-control" required>
+                    <option value="undefined" selected disabled hidden>--Select--</option>
+                    <ng-container *ngFor="let item of datastate">
+                        <option value="{{item.StateId}}">{{item.StateName}}</option>
+                    </ng-container>
+                </select>
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cstat.errors?.required) || (cstat.errors?.required && cstat.touched)">Enter Your City</div>
+
+                <label>City</label>
+                <input type="text" [(ngModel)]="ccity" #ccty="ngModel" name="ccty" class="form-control" placeholder="City" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && ccty.errors?.required) || (ccty.errors?.required && ccty.touched)">Enter Your City</div>
+
+                <label>Pincode</label>
+                <input type="number" [(ngModel)]="cpincode" #cpin="ngModel" name="cpin" class="form-control" [pattern]="PinPattern" onkeypress="if (this.value.length == 6) return false;" placeholder="Pincode" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cpin.errors?.required) || (cpin.errors?.required && cpin.touched)">Enter Your Pincode(Only Digits)</div>
+                <div class="text-danger" *ngIf="(frmRegister.submitted && cpin.errors?.pattern)">Pincode must be 6 Digits</div>
+
+
+
+
+
+                <div>
+                    <label>Upload Correspondence Address Proof</label><br />
+                    <div>
+                        <div style="display:flex">
+
+                            <input type="file" name="fileCadd" [(ngModel)]="selectCadd" #fileCadd class="form-control" style="width:86%" required id="imageInput" (change)="onUploadCadd($event)">
+                            <button style="border: none;" (click)="openCadd(imagePreviewCadd)">
+                                Preview
+                            </button>
+                        </div>
+                        <div *ngIf="!selectCadd && isNextClicked" class="text-danger">
+                           Correspondence Address Proof is Require
+                        </div>
+
+
+                        <ng-template #imagePreviewCadd>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Image Preview</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img [src]="urlForCadd" width="1180" alt="Image Preview">
+                            </div>
+
+                        </ng-template>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Permanent Address-->
+
+            <div class="caddress">
+
+                <label id="cadd" style="">Permanent Address</label>&nbsp;
+                <input type="checkbox" id="Check" (click)="AutoFillAdd()" /><span style="font-weight:600;"> Same as Correspondence Address</span>
+                <br />
+
+                <label>Address Line 1</label>
+                <input type="text" [(ngModel)]="paddline1" #padd1="ngModel" name="padd1" id="peradd1" class="form-control" placeholder="House No./Flat Name" [disabled]="for_disable" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && padd1.errors?.required) || (padd1.errors?.required && padd1.touched)">Enter Your House No./Flat Name</div>
+
+                <label>Address Line 2</label>
+                <input type="text" [(ngModel)]="paddline2" #padd2="ngModel" name="padd2" class="form-control" placeholder="Street Name" [disabled]="for_disable" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && padd2.errors?.required) || (padd2.errors?.required && padd2.touched)">Enter Your Street Name</div>
+
+                <label>Address Line 3</label>
+                <input type="text" [(ngModel)]="paddline3" #padd3="ngModel" name="padd3" class="form-control" placeholder="Landmark" [disabled]="for_disable" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && padd3.errors?.required) || (padd3.errors?.required && padd3.touched)">Enter Landmark</div>
+
+                <label>Country</label>
+                <select [(ngModel)]="pcountry" #pcon="ngModel" name="pcon" class="form-control"  (change)="onSelectPerCountry()" [disabled]="for_disable" required>
+                    <option value="undefined" selected disabled hidden>--Select--</option>
+                    <ng-container *ngFor="let item of datacountry">
+                        <option value="{{item.CountryId}}">{{item.CountryName}}</option>
+                    </ng-container>
+                </select>
+                <!--<input type="text" [hidden]="!dropshow" [(ngModel)]="txtpercon" #percon="ngModel" name="percon" class="form-control" [disabled]="for_disable" placeholder="Country" />-->
+                <div class="text-danger" *ngIf="(frmRegister.submitted && pcon.errors?.required) || (pcon.errors?.required && pcon.touched)">Enter Your Country</div>
+
+                <label>State</label>
+                <select [(ngModel)]="pstate" #pstat="ngModel" name="pstat" class="form-control" [disabled]="for_disable" required>
+                    <option value="undefined" selected disabled hidden>--Select--</option>
+                    <ng-container *ngFor="let item of Pdatastate">
+                        <option value="{{item.StateId}}">{{item.StateName}}</option>
+                    </ng-container>
+                </select>
+                <!--<input type="text" [hidden]="!dropshow" [(ngModel)]="txtperstate" #perstat="ngModel" name="perstat" class="form-control" [disabled]="for_disable" placeholder="State" />-->
+                <div class="text-danger" *ngIf="(frmRegister.submitted && pstat.errors?.required) || (pstat.errors?.required && pstat.touched)">Enter Your State</div>
+
+                <label>City</label>
+                <input type="text" [(ngModel)]="pcity" #pcty="ngModel" name="pcty" class="form-control" placeholder="City" [disabled]="for_disable" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && pcty.errors?.required) || (pcty.errors?.required && pcty.touched)">Enter Your City</div>
+
+                <label>Pincode</label>
+                <input type="number" [(ngModel)]="ppincode" #ppin="ngModel" name="ppin" class="form-control" [pattern]="PinPattern" onkeypress="if (this.value.length == 6) return false;" placeholder="Pincode" [disabled]="for_disable" required />
+                <div class="text-danger" *ngIf="(frmRegister.submitted && ppin.errors?.required) || (ppin.errors?.required && ppin.touched)">Enter Your Pincode(Only Digits)</div>
+                <div class="text-danger" *ngIf="frmRegister.submitted && ppin.errors?.pattern">Pincode must be 6 Digits</div>
+
+                <div >
+                    <label>Upload Permanent Address Proof</label><br />
+                    <div  >
+                        <div style="display:flex">
+
+                            <input [disabled]="for_disable" type="file" name="filePadd" [(ngModel)]="selectPadd" #filePadd class="form-control" style="width:86%" required id="imageInput" (change)="onUploadPadd($event)">
+                            <button [disabled]="for_disable" style="border: none;" (click)="openPadd(imagePreviewPadd)">
+                                Preview
+                            </button>
+                        </div>
+                        <div *ngIf="!selectPadd && isNextClicked" [hidden]="ForPAddProof" class="text-danger">
+                            Permanent Address Proof is Require
+                        </div>
+
+
+
+                        <ng-template #imagePreviewPadd>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Image Preview</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img [src]="urlForPadd" width="1180" alt="Image Preview">
+                            </div>
+                        </ng-template>
+                    </div>
+
+                </div>
+                <button type="submit" class="nextbtn" (click)="[uploadSameAdd(fileCadd.files),uploadCadd(fileCadd.files),uploadPadd(filePadd.files),AdditionalInfo(frmRegister)]">
+                    NEXT&nbsp;<i class='fas fa-arrow-right'></i>
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>
+<br />
+<app-master-footer></app-master-footer>

@@ -1,0 +1,249 @@
+﻿
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #3f3f40;
+}
+
+.Out-main {
+    display: flex;
+}
+
+.section {
+    border-radius: 8px;
+    background-color: white;
+    padding: 30px 40px 30px 40px;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.45), 0px 0px 0px 0px rgba(0,0,0,0.45), 0px 0px 0px 0px rgba(0,0,0,0.45), 0px 0px 6px 0px rgba(0,0,0,0.45);
+}
+
+.main {
+    background-color: #dfe6f2;
+    width: 100%;
+    padding: 25px 80px 25px 80px;
+}
+
+.box1 {
+    margin: 30px 0px 30px 0px;
+}
+
+.box2 {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid gainsboro;
+    padding: 30px;
+}
+
+.title {
+    color: #d96c3d;
+}
+
+.collapsible {
+    width: 100%;
+    background-color: #fac293;
+    padding: 8px 8px 8px 8px;
+    border: none;
+}
+
+.pbar1 {
+    width: 85px;
+    height: 7px;
+    background-color: lightgray;
+    list-style: none;
+    border-radius: 8px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.d-flex {
+    margin-bottom: 0px;
+}
+
+.pbarActive {
+    background-color: #ee6c1f;
+    opacity: 0.6;
+}
+
+.content {
+    border: 1px solid gainsboro;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 30px;
+}
+
+.element1 {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.element2 {
+    display: inline-block;
+    width: 10%;
+    text-align: right;
+    padding-right: 15px;
+    margin-bottom: 0px;
+}
+
+.main1 {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.div1 {
+    width: 50%;
+    padding-right: 13px;
+}
+
+.div2 {
+    width: 50%;
+    padding-left: 13px;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid gainsboro;
+    padding: 2px 5px 2px 5px;
+}
+
+    .input:focus-visible {
+        outline: none;
+    }
+
+.div3 {
+    padding-right: 13px;
+    width: 33.33%;
+}
+
+.div4 {
+    padding-right: 13px;
+    padding-left: 13px;
+    width: 33.33%;
+}
+
+.findifscbtn {
+    font-size: 11px;
+    background-color: gainsboro;
+    border-radius: 3px;
+    border: none;
+    position: relative;
+    top: 0px;
+}
+
+
+.label {
+    width: 81%;
+}
+
+.IFSClabel {
+    display: flex;
+}
+
+.div5 {
+    padding-left: 13px;
+    width: 33.33%;
+}
+
+.input2 {
+    border: 1px solid gainsboro;
+    width: 100%;
+    padding: 4px 8px 4px 8px;
+}
+
+.input3 {
+    border: 1px solid gainsboro;
+    width: 33%;
+    padding: 4px 8px 4px 8px;
+}
+
+.div6 {
+    padding-right: 13px;
+    width: 50%;
+}
+
+.div7 {
+    padding-left: 13px;
+    width: 50%;
+}
+
+.note {
+    background-color: antiquewhite;
+    font-size: 12px;
+    margin-top: 30px;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.submitbut {
+    border: none;
+    background-color: #311ee3;
+    color: white;
+    padding: 5px 17px 5px 17px;
+    border-radius: 3px;
+}
+
+.submitdiv {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.invalidparam {
+    font-size: 12px;
+    color: red;
+}
+
+
+.showDoc {
+    background-color: black;
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.showDocsection {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    z-index: 1;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+}
+
+.closebtn {
+    background-color: red;
+    border: none;
+    color: white;
+}
+
+.closediv {
+    width: 100%;
+    text-align: end;
+    background-color: white;
+}
+
+.signformat {
+    margin-left: 185px;
+    color: orangered;
+    padding-bottom: 2px;
+    text-decoration: none;
+    border-bottom: 1px dashed orangered;
+}
+
+.showimg {
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;*/
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.previewbtn {
+    margin-top: 4px;
+    background-color: orangered;
+    color: white;
+    border: none;
+    height: 30px;
+    border-radius: 3px;
+}

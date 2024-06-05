@@ -1,0 +1,65 @@
+﻿
+
+
+<app-master-header></app-master-header>
+<br />
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="column shadow">
+            <div class="title">
+                <p>
+                    Broking Account-
+                    <span>Webcam Video-IPV </span>
+                </p>
+            </div>
+            <p>We need to do a quick in-person-verification through Webcam. </p>
+            <h4> Preview </h4>
+            <div class="msg">
+                <p> Recorded for 10 seconds</p>
+            </div>
+            <div class="video-container">
+                <video class="video" #video autoplay controls [hidden]="hideOriginalDisplay"></video>
+                <span class="m-1"></span>
+                <video class="video" [hidden]="hidePreviewDisplay"
+                       controls
+                       #recordedVideo></video>
+
+            </div>
+            <br />
+            <div class="video-btns">
+                <button class="btn start" *ngIf="!isRecording" (click)="[startRecording(),capture()]">START</button>
+                <button class="btn redo" *ngIf="isRecording" (click)="showStart()">REDO</button>
+                <button class="btn preview" [hidden]="hidePreviewbtn" (click)="videoPreview()">PREVIEW</button>
+                <button class="btn preview" (click)="otpsend()">Save</button>
+            </div>
+        </div>
+        <ng-container>
+            <div class="column1 shadow">
+                <h4>IPV Details </h4>
+                <div class="photo shadow">
+                    <canvas [class.show]="isCaptured"
+                            [class.hide]="!isCaptured"
+                            #canvas
+                            id="canvas"
+                            [width]="WIDTH"
+                            [height]="HEIGHT"></canvas>
+                </div>
+                <p> Enter OTP sent to your Registered Email in the Box given below.</p>
+                <input type="number" [(ngModel)]="userIpvOtp" #OtpIPv="ngModel" placeholder="Enter OTP" class="form-control" required onkeypress="if (this.value.length == 6) return false;"/>
+                <button (click)="downloadFile()" class="btn"> SUBMIT</button>
+            </div>
+        </ng-container>
+    </div>
+</body>
+</html>
+
+<br />
+<app-master-footer></app-master-footer>

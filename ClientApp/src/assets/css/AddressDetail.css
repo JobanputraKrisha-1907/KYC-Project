@@ -1,0 +1,79 @@
+﻿body {
+    font-family: Poppins;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.main-div {
+    background-color: #f9f5f3;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.heading {
+    padding: 15px 15px 10px 15px;
+    font-size: 20px;
+}
+
+    .heading label {
+        color: orangered;
+        font-weight: 700;
+    }
+
+.address {
+    width: 100%;
+    font-size: 15px;
+    padding: 15px 15px 10px 15px;
+    background-color: #fff;
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-between;
+    border-color: #bfbfbf;
+
+}
+
+.caddress {
+    width: 48.5%;
+}
+
+#cadd {
+    padding: 5px 80px 7px 0;
+    font-weight: 600;
+}
+
+.caddress label {
+    font-weight: 600;
+    padding: 15px 5px 0 0;
+}
+
+input[type="file"] {
+    padding: 3px 10px;
+}
+
+a {
+    color: #2596be;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nextbtn {
+    height: 40px;
+    width: 20%;
+    float: right;
+    background-color: #163e81;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: 40px;
+}
+
+.text-danger {
+    font-weight: 600;
+}

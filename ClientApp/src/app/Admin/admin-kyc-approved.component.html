@@ -1,0 +1,49 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+
+<div class="container">
+    <div class="main_container">
+        <div class="cardBody ">
+            <div class="card rounded shadow border-0">
+                <h4>Kyc Approved Requests</h4>
+            </div>
+
+            <div class="card rounded shadow border-0">
+                <div class="card-body p-5 bg-white rounded">
+                    <div class="wrap">
+                        <div class="search">
+                            <input type="text" name="search" #search="ngModel" [(ngModel)]="searchText" autocomplete="off" class="searchTerm" placeholder="Search...">
+                            <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example" style="width:100%" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Client ID<i class="fas fa-sort" (click)="setOrder('ClientId')"></i></th>
+                                    <th>Client Name<i class="fas fa-sort" (click)="setOrder('Name')"></i></th>
+                                    <th>Client Email<i class="fas fa-sort" (click)="setOrder('Email')"></i></th>
+                                    <th>Client MobileNo.<i class="fas fa-sort" (click)="setOrder('MobileNo')"></i></th>
+                                    <th>Kyc Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ClientData | filter: searchText | orderBy: order:reverse:caseInsensitive">
+                                    <td>{{ item.ClientId}}</td>
+                                    <td>{{ item.Name}}</td>
+                                    <td>{{ item.Email}}</td>
+                                    <td>{{ item.MobileNo}}</td>
+                                    <td><label class="badge badge-success" >Approved</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-master-footer></app-master-footer>

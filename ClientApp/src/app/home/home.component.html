@@ -1,0 +1,137 @@
+<app-header></app-header>
+<html lang="en">
+<head>
+    <title>Start Your Investment journey with Fundsbazar</title>
+    <!--<link href="../../assets/css/FundBazarLogin.css" rel="stylesheet" />-->
+    <link rel="icon" type="image/svg" href="../../../../wwwroot/fundzbazarlogo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <app-loader *ngIf="loading"></app-loader>
+    <!--<div class="header container">
+        <div>
+            <img id="img1" src="/Fundbazar_Logo.PNG" alt="FundzBazar" />
+        </div>
+    </div>-->
+
+    <div class="section_login">
+        <div class="grid sec_login">
+            <div class="SignUp_section text-center">
+                <p class="SignUp_heading">Sign Up</p>
+                <p class="SignIn_heading_content">
+                    Start Your Investment journey with Fundsbazar.<br />
+                    Sign Up & Join the Family of
+                </p>
+                <h2 class="Investor_num">
+                    <span class="color-orange">1495700</span><br />
+                    <span class="color-orange weightOrnage">Happy Investors</span>
+                </h2>
+                <button class="join_Btn" [routerLink]="['/registration']">JOIN NOW</button>
+                <p class="join_Btn_content">
+                    A single Investment Account For <br />Mutual Fund, Stock Broking, Fixed Deposit,<br />
+                    NPS, Bond & More...
+                </p>
+            </div>
+            <div class="SingIn_section text-center">
+                <h3 class="SignIn_heading">Sign In</h3>
+                <div class="form">
+                    <form #frmLogin="ngForm">
+                        <input class="txtBox" type="text" id="text" placeholder="Email Id" name="UserName" #UserName="ngModel" [(ngModel)]="UserEmail" required />
+                        <input class="txtBox" type="password" id="password" placeholder="Password" name="UserPwd" #UserPwd="ngModel" [(ngModel)]="UserPassword" required [hidden]="!showotp" />
+                        <ng-otp-input (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config"
+                                      name="otp" [hidden]="!hidepassword"></ng-otp-input>
+                        <div class="SingIn_Links" [hidden]="hidelogin">
+                            <a class="forgot_pass_link" [routerLink]="['/forgotPass-one']">
+                                Forgot Password ?
+                            </a>
+                            <button class="otp_link" (click)="Login_Otp()">
+                                Login with OTP
+                            </button>
+                        </div>
+                        <button class="SignIn_Btn" [hidden]="hidelogin" (click)="[toggle(),LoginBtn(frmLogin)]">Login</button>
+
+
+                        <!--<div class="alert alert-warning" role="alert" *ngIf="for_resend_otp">
+                        Otp Send to Your EmailId<br />-->
+                        <!--Your Otp Will be Expire in : <cd-timer countdown="true" [startTime]="30" format="intelli"> </cd-timer>-->
+                        <!--</div>-->
+
+
+
+                        <div class="SingIn_Links" [hidden]="!hidelogin" style=" margin-top: 25px;">
+                            <a class="forgot_pass_link" [routerLink]="['/forgotPass-one']">
+                                Forgot Password ?
+                            </a>
+                            <a href="" class="otp_link">
+                                Login with Password
+                            </a>
+                        </div>
+                        <button class="btn-resend" [hidden]="showlogin" (click)="EnableEmailReOtp()" [disabled]='!dislock' [ngClass]="{'forOpacity':statusEmail}">Resend</button>
+
+                        <button class="LogOtpIn_Btn" [hidden]="showlogin" (click)="submitlogin(frmLogin)">Login</button>
+
+
+                    </form>
+                    <div class="SignIn_cerficate_links">
+                        <a href="#" class="img_links">
+                            <img src="/assets/img/getseal.gif" alt="Verified Logo">
+                        </a>
+                        <a href="#" class="about_links">ABOUT SSL CERTIFICATES</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="for-LoginOtp">
+        <div class="section_login">
+            <div class="grid sec_login">
+                <div class="SignUp_section text-center">
+                    <p class="SignUp_heading">Sign Up</p>
+                    <p class="SignIn_heading_content">
+                        Start Your Investment journey with Fundsbazar.<br />
+                        Sign Up & Join the Family of
+                    </p>
+                    <h2 class="Investor_num">
+                        <span class="color-orange">1495700</span><br />
+                        <span class="color-orange weightOrnage">Happy Investors</span>
+                    </h2>
+                    <button class="join_Btn" [routerLink]="['/registration']">JOIN NOW</button>
+                    <p class="join_Btn_content">
+                        A single Investment Account For <br />Mutual Fund, Stock Broking, Fixed Deposit,<br />
+                        NPS, Bond & More...
+                    </p>
+                </div>
+                <div class="SingIn_section text-center">
+                    <h3 class="SignIn_heading">Sign In</h3>
+                    <div class="form">
+                        <form #frmLogin="ngForm">
+                            <input class="txtBox" type="text" id="text" placeholder="Email Id" name="UserName" #UserName="ngModel" [(ngModel)]="UserEmail" required />
+
+                            <ng-otp-input (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config" [(ngModel)]="loginotp"
+                                      name="otp" #otp="ngModel" ></ng-otp-input>
+
+                            <button class="btn-resend"  (click)="EnableEmailReOtp()" [disabled]='!dislock'>Resend</button>
+                            <br />
+
+                            <button class="btn1"  (click)="submitlogin(frmLogin)">submit</button>
+
+                        </form>
+                        <div class="SignIn_cerficate_links">
+                            <a href="#" class="img_links">
+                                <img src="/getseal.gif" alt="Verified Logo">
+                            </a>
+                            <a href="#" class="about_links">ABOUT SSL CERTIFICATES</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>-->
+</body>
+</html>
+<app-footer></app-footer>

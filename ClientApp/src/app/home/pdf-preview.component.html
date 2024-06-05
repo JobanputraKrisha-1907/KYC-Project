@@ -1,0 +1,33 @@
+﻿<app-loader id="loader" style="display:none"></app-loader>
+<app-master-header></app-master-header>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>FundzBazar-Account Opening Form</title>
+</head>
+<body>
+   
+    <section>
+        <div class="box">
+
+            <h5 class="text-center p-3">Account Opening <span class="orange">Form</span></h5>
+            <p class="para1 p-3">Kindly verify your details in the prefilled account opening form given below and then proceed for Aadhaar e-sign process to complete registration </p>
+            <div class="pdfView">
+                <iframe id="pdf" style="width:100% ; height:300px">
+                </iframe>
+            </div>
+
+            <div>
+                <button class="btn-orange" type="submit" (click)="ClickContinue()">
+                    CONTINUE
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+</body>
+
+<app-master-footer></app-master-footer>

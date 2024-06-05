@@ -1,0 +1,353 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Page</title>
+</head>
+<body>
+
+    <section>
+        <div class="box">
+
+            <div class="container box1">
+
+                <!--Update Bank-->
+                <div *ngIf="str==='bank'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Bank Data</span></h5>
+                    <p class="text-center">Enter Bank Name to Update Bank in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':bankname.touched && bankname.invalid || bankname.invalid && submitted}" [(ngModel)]="BankName" #bankname="ngModel" name="addresstype" placeholder="Enter Bank Name.." required />
+                            <span class="text-danger" *ngIf="bankname.touched && bankname.invalid || bankname.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchBank(bankname)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelbank">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Bank Name</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of BankData">
+
+                                    <td scope="row">
+                                        <input class=" form-control text is-invalid" type="text" [ngClass]="{'is-invalid':bankname.dirty && bankname.invalid}" [(ngModel)]="item.BankName" #bankname="ngModel" name="bankname" required />
+                                    </td>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateBank(item.BankId,bankname.value,bankname)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Update Ifsc-->
+                <div *ngIf="str==='ifsc'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">IFSC Data</span></h5>
+                    <p class="text-center">Enter Ifsc code to Update Ifsc details in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':ifsc.touched && ifsc.invalid || ifsc.invalid && submitted}" [(ngModel)]="Ifsc" [pattern]="IFSCpattern" #ifsc="ngModel" name="ifsc" placeholder="Enter Ifsc code.." required />
+                            <span class="text-danger" *ngIf="ifsc.touched && ifsc.errors?.required || ifsc.errors?.required  && submitted">Please Enter IFSC Code </span>
+                            <span class="text-danger" *ngIf="ifsc.errors?.pattern && ifsc.touched || ifsc.errors?.pattern && submitted">Please Valid IFSC Code </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchIfsc(ifsc)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelifsc">
+                        <form #IFSCForm="ngForm">
+                            <table class="table table-striped">
+                                <tbody *ngFor="let item of IfscData">
+                                    <tr>
+                                        <th scope="col">IFSCCode</th>
+                                        <td scope="col">{{item.IFSCCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Bank Name</th>
+                                        <td scope="col">
+                                            <select class="custom-select is-invalid" [ngClass]="{'is-invalid':selectbank.touched && selectbank.invalid || selectbank.invalid && submitted }" [(ngModel)]="item.BankID" #selectbank="ngModel" name="selectbank" required>
+                                                <ng-container *ngFor="let items of data">
+                                                    <option value="{{items.BankId}}">{{items.BankName}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">MICRCode</th>
+                                        <td scope="col">
+                                            <input class="w-100 form-control" type="text" [(ngModel)]="item.MICRCode" #MICRCode="ngModel" name="MICRCode" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">BankBranch</th>
+                                        <td scope="col">
+                                            <input class="w-100 form-control is-invalid" [ngClass]="{'is-invalid':BankBranch.touched && BankBranch.invalid || BankBranch.invalid && submitted}" type="text" [(ngModel)]="item.BankBranch" #BankBranch="ngModel" name="BankBranch" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">BankCity</th>
+                                        <td scope="col">
+                                            <input class="w-100 form-control" type="text" [(ngModel)]="item.BankCity" #BankCity="ngModel" name="BankCity" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">BankAddress</th>
+                                        <td scope="col">
+                                            <input class="w-100 form-control is-invalid" [ngClass]="{'is-invalid':BankAddress.touched && BankAddress.invalid || BankAddress.invalid && submitted}" type="text" [(ngModel)]="item.BankAddress" #BankAddress="ngModel" name="BankAddress" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col"> Action</th>
+                                        <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateIfsc(item.IFSCCode,item.BankID,MICRCode.value,BankBranch.value,BankCity.value,BankAddress.value,IFSCForm)">Update</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Update country-->
+                <div *ngIf="str==='country'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Country Data</span></h5>
+                    <p class="text-center">Enter Country Name to Update Country in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':country.touched && country.invalid || country.invalid && submitted}" [(ngModel)]="Country" #country="ngModel" name="country" placeholder="Enter Country Name.." required />
+                            <span class="text-danger" *ngIf="country.touched && country.invalid || country.invalid && submitted">Please Enter Country Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchCountry(country)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelcountry">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Country Name</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of CountryData">
+
+                                    <td scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':country.dirty && country.invalid}" [(ngModel)]="item.CountryName" #country="ngModel" name="country" required />
+
+                                    </td>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateCountry(item.CountryId,country.value,country)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!--update state-->
+                <div *ngIf="str==='state'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">State Data</span></h5>
+                    <p class="text-center">Enter State Name to Update State in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':state.touched && state.invalid || state.invalid && submitted}" [(ngModel)]="State" #state="ngModel" name="state" placeholder="Enter State Name.." required />
+                            <span class="text-danger" *ngIf="state.touched && state.invalid || state.invalid && submitted">Please Enter State Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchState(state)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelstate">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">
+                                        country
+                                    </th>
+                                    <th scope="col">
+                                        state name
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of StateData">
+                                    <td>
+                                        <select class="custom-select" [(ngModel)]="item.CountryId" #selectcountry="ngModel" name="selectcountry" required>
+
+
+                                            <ng-container *ngFor="let items of data">
+                                                <option value="{{items.CountryId}}">{{items.CountryName}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </td>
+                                    <td scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':State.dirty && State.invalid}" [(ngModel)]="item.StateName" #State="ngModel" name="State" required />
+
+                                    </td>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateState(item.StateId,State.value,item.CountryId,State)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+                <!--Update AddressType-->
+                <div *ngIf="str==='UpdataddressType'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Address Type Data</span></h5>
+                    <p class="text-center">Enter Address Type to Update Address Type in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':addresstype.touched && addresstype.invalid || addresstype.invalid && submitted}" [(ngModel)]="AddressType" #addresstype="ngModel" name="addresstype" placeholder="Enter address Type.." required />
+                            <span class="text-danger" *ngIf="addresstype.touched && addresstype.invalid || addresstype.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchAddressType(addresstype)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tblupdateaddrestype">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th scope="col">
+                                        Address Type
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of SAddressTypeData">
+                                    <td scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':AddressType.dirty && AddressType.invalid}" [(ngModel)]="item.AddressType" #AddressType="ngModel" name="AddressType" required />
+
+                                    </td>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateAddressType(item.Id,AddressType.value,AddressType)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Update annualIncome-->
+                <div *ngIf="str==='annualIncome'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Annual Income Data</span></h5>
+                    <p class="text-center">Enter Annual Income to Update Annual Income in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':annualincome.touched && annualincome.invalid || annualincome.invalid && submitted}" [(ngModel)]="AnnualIncome" #annualincome="ngModel" name="annualIncome" placeholder="Enter Annual Income Type.." required />
+                            <span class="text-danger" *ngIf="annualincome.touched && annualincome.invalid || annualincome.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchAnnualIncome(annualincome)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tblupdateannualincome">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Annual Income</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SAnnualIncomeData">
+                                    <th scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':AnnualIncome.dirty && AnnualIncome.invalid}" [(ngModel)]="item.AnnualIncome" #AnnualIncome="ngModel" name="AnnualIncome" required />
+
+                                    </th>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateAnnualIncome(item.Id,AnnualIncome.value,AnnualIncome)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <!--Update occupation-->
+                <div *ngIf="str==='occupation'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Occupation Data</span></h5>
+                    <p class="text-center">Enter Occupation to Update Occupation in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':occupation.touched && occupation.invalid || occupation.invalid && submitted}" [(ngModel)]="Occupation" #occupation="ngModel" name="occupation" placeholder="Enter Occupation.." required />
+                            <span class="text-danger" *ngIf="occupation.touched && occupation.invalid || occupation.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchOccupation(occupation)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tblupdateoccupation">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Occupation</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SOccupationData">
+                                    <th scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':Occupation.dirty && Occupation.invalid }" [(ngModel)]="item.OccupationName" #Occupation="ngModel" name="Occupation" required />
+
+                                    </th>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateOccupation(item.Id,Occupation.value,Occupation)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Update sourceOfWealth-->
+                <div *ngIf="str==='sourceOfWealth'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Update </span><span style="color: #ee6c1f">Source of Wealth Data</span></h5>
+                    <p class="text-center">Enter Source Of Wealth to Update Source Of Wealth in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted}" [(ngModel)]="SourceOfWealth" #sourceofwealth="ngModel" name="sourceOfWealth" placeholder="Enter Source Of Wealth.." required />
+                            <span class="text-danger" *ngIf="sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchSourceOfWealth(sourceofwealth)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tblupdatesourceofwealth">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col"> Source Of Wealth</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SSourceOfWealthData">
+                                    <th scope="row">
+                                        <input type="text" class="form-control is-invalid" [ngClass]="{'is-invalid':SourceOfWealth.dirty && SourceOfWealth.invalid }" [(ngModel)]="item.SourceOfWealth" #SourceOfWealth="ngModel" name="SourceOfWealth" required />
+
+                                    </th>
+                                    <td><button class="btn btn-outline-primary" type="submit" (click)="clickUpdateSourceOfWealth(item.Id,SourceOfWealth.value,SourceOfWealth)">Update</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>
+<app-master-footer></app-master-footer>

@@ -1,0 +1,260 @@
+﻿
+
+<body>
+    <app-master-header></app-master-header>
+    <div class="Out-main">
+
+        <div class="main">
+            <div class="section">
+                <!--<div class="pbar">
+                    <ul class="d-flex justify-content-end">
+                        <li class="pbar1 pbarActive"></li>
+                        <li class="pbar1 pbarActive"></li>
+                        <li class="pbar1 pbarActive"></li>
+                        <li class="pbar1 pbarActive"></li>
+                    </ul>
+                </div>-->
+                <h4 class="title">Individual - <span style="color:black; font-size:18px;"> Bank Details</span></h4>
+                <form #bankDetails="ngForm">
+
+
+                    <div class="box1">
+                        <button type="button" class="collapsible" (click)="toggleCollapse()">
+                            <p class="element1">Bank Details (Same bank will be used when you open your FundzBazar broking account)</p>
+                            <p class="element2">{{scrol}}</p>
+
+                        </button>
+                        <div class="content" *ngIf="visible">
+
+                            <div class="main1">
+                                <div class="div1">
+                                    <label>Bank Name</label><br />
+                                    <select [(ngModel)]="bankName" #banknm="ngModel" name="banknm" (focusout)="matchIFSC()" class="input" required>
+                                        <option value="undefined" selected disabled hidden>--Select--</option>
+                                        <ng-container *ngFor="let item of data">
+                                            <option value="{{item.BankId}}">{{item.BankName}}</option>
+                                        </ng-container>
+                                    </select>
+                                    <!--<input ngModel class="input" autocomplete="off" #bankname="ngModel" (keyup)="matchmasterfun(bankname,IFSC)" list="Bankname" type="text" name="bankname" required [pattern]="banknamepattern" placeholder="Bank Name" />-->
+                                    <!--<datalist id="Bankname">
+                                        <ng-container *ngFor="let item of data">
+                                            <option value="{{item.BankName}}">
+                                        </ng-container>
+                                    </datalist>-->
+                                    <!--<p class="invalidparam" *ngIf="bankname.touched && bankname.errors?.pattern && bankname.value">invalid bank name</p>-->
+                                    <p class="invalidparam" *ngIf=" banknm.touched && banknm.errors?.required || banknm.errors?.required && submited">Required Bank Name</p>
+
+                                </div>
+                                <div class="div2">
+                                    <div class="IFSClabel">
+                                        <div class="label">
+                                            <label>IFSC Code *(11 Digit)</label>
+                                        </div>
+                                        <div class="findifsc">
+                                            <button class="findifscbtn" type="button">Find IFSC Code</button>
+                                        </div>
+                                    </div>
+
+                                    <input [(ngModel)]="IFSCCode" class="input" #IFSC="ngModel" type="text" name="IFSC" (focusout)="matchIFSC()" required [pattern]="IFSCpattern" placeholder="IFSC CODE (11 Digit)" onkeypress="if (this.value.length == 11) return false;" />
+                                    <p class="invalidparam" *ngIf=" IFSC.touched && IFSC.errors?.required || IFSC.errors?.required && submited">Requerd IFSC Code</p>
+                                    <p class="invalidparam" *ngIf=" IFSC.touched && IFSC.errors?.pattern && IFSC.value || submited && IFSC.errors?.pattern && IFSC.value">Invalid IFSC Code</p>
+
+
+                                </div>
+                            </div>
+                            <div class="main1">
+                                <div class="div3">
+                                    <label>MICR Code (9 Digit)</label><br />
+                                    <input class="input" ngModel #MICR="ngModel" type="text" name="MICR" [disabled]="matchanddisable" [(ngModel)]="MICRCode" required [pattern]="MICRpattern" placeholder="MICR CODE (9 Digit)" />
+                                    <!--<p class="invalidparam" *ngIf=" MICR.errors?.required && submited">Requerd MICR Code</p>-->
+                                    <p class="invalidparam" *ngIf=" MICR.touched && MICR.errors?.pattern && MICR.value || submited && MICR.errors?.pattern && MICR.value">Invalid MICR Code</p>
+                                </div>
+                                <div class="div4">
+                                    <label>Bank Branch</label><br />
+                                    <input class="input" ngModel #branchname="ngModel" type="text" required [disabled]="matchanddisable" [(ngModel)]="BankBranch" name="branchname" placeholder="Bank Branch" />
+                                    <p class="invalidparam" *ngIf=" branchname.errors?.required && submited">Requerd Bank Branch</p>
+                                </div>
+                                <div class="div5">
+                                    <label>Bank City</label><br />
+                                    <input class="input" ngModel #bankcity="ngModel" type="text" required name="bankcity" [disabled]="matchanddisable" [(ngModel)]="BankCity" placeholder="Bank City" />
+                                    <!--<p class="invalidparam" *ngIf=" bankcity.errors?.required && submited">Requerd Bank City</p>-->
+                                </div>
+                            </div>
+                            <div class="main1">
+                                <div class="div3">
+                                    <label>Account Type</label>
+
+                                    <select name="accounttype" #type="ngModel" class="input" [(ngModel)]="typeid">
+                                        <option value="Select">--select--</option>
+                                        <ng-container *ngFor="let item of account_type">
+                                            <option value={{item.Name}}>{{item.Name}}</option>
+                                        </ng-container>
+                                    </select>
+                                    <p class="invalidparam" *ngIf="typeid == 'Select' && submited">Requerd Account Type</p>
+                                </div>
+                                <div class="div4">
+                                    <label>Account Number</label><br />
+                                    <input class="input" [(ngModel)]="accountNumber" #number="ngModel" type="text" required [pattern]="numberpattern" name="number" placeholder="Account Number" />
+                                    <p class="invalidparam" *ngIf=" number.touched && number.errors?.required || number.errors?.required && submited ">Requerd Account Number</p>
+                                    <p class="invalidparam" *ngIf=" number.touched && number.errors?.pattern && number.value || submited && number.errors?.pattern && number.value">Invalid Account Number</p>
+                                </div>
+                                <div class="div5">
+                                    <label>Mode of Holding</label>
+                                    <select name="mofh" ngModel #holding="ngModel" class="input" [(ngModel)]="holdingid" (change)="modetoholder()">
+                                        <option value="Select">--select--</option>
+                                        <ng-container *ngFor="let item of ModeofHolding">
+                                            <option value={{item.Name}}>{{item.Name}}</option>
+                                        </ng-container>
+                                    </select>
+                                    <p class="invalidparam" *ngIf="holdingid == 'Select' && submited">Requerd Mode of Holding</p>
+                                </div>
+                            </div>
+                            <div class="main1">
+                                <div class="div3">
+                                    <label>First Holder Name (As per Bank)</label><br />
+                                    <input class="input" [(ngModel)]="firstHolder" #Holder1="ngModel" type="text" [pattern]="holderpattern" required name="Holder1" placeholder="First Holder Name" />
+                                    <p class="invalidparam" *ngIf=" Holder1.errors?.required && Holder1.touched || Holder1.errors?.required && submited ">Requerd First Holder Name</p>
+                                    <p class="invalidparam" *ngIf=" Holder1.touched && Holder1.errors?.pattern && Holder1.value || submited && Holder1.errors?.pattern && Holder1.value">Invalid First Holder Name</p>
+                                </div>
+                                <div class="div4">
+                                    <label>Second Holder Name</label><br />
+                                    <input class="input" [(ngModel)]="secondHolder" #Holder2="ngModel" type="text" required [pattern]="holderpattern" [disabled]="hold2" name="Holder2" placeholder="Second Holder Name" />
+                                    <p class="invalidparam" *ngIf="Holder2.errors?.required && Holder2.touched || Holder2.errors?.required && submited ">Requerd Second Holder Name</p>
+                                    <p class="invalidparam" *ngIf=" Holder2.touched && Holder2.errors?.pattern && Holder2.value || submited && Holder2.errors?.pattern && Holder2.value">Invalid Second Holder Name</p>
+                                </div>
+                                <div class="div5">
+                                    <label>Third Holder Name</label><br />
+                                    <input class="input" [(ngModel)]="thirdHolder" #Holder3="ngModel" type="text" [disabled]="hold3" name="Holder3" placeholder="Third Holder Name" />
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <div class="main1">
+                            <div style=" margin-right: 45px; width: 48%;">
+                                <label>Upload Cancel Cheque Proof</label><br />
+                                <div>
+                                    <div style="display:flex">
+                                        <input type="file" name="cancelCheque" [(ngModel)]="selectcheque" #cancelCheque class="form-control" style="width:86%" required id="imageInput" (change)="onUploadCheque($event)">
+                                        <button style="border: none;" (click)="openCheque(imagePreviewCheque)">
+                                            Preview
+                                        </button>
+                                    </div>
+                                    <div *ngIf="!selectcheque && isNextClicked" class="invalidparam">
+                                        Cancel Cheque Proof is Require
+                                    </div>
+
+
+                                    <ng-template #imagePreviewCheque>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Image Preview</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img [src]="urlForCheque" width="1180" alt="Image Preview">
+                                        </div>
+
+                                    </ng-template>
+
+
+                                </div>
+
+                            </div>
+                            <div style="  width: 48%;">
+                                <label>Upload Bank Statement Proof</label><br />
+                                <div>
+                                    <div style="display:flex">
+
+                                        <input type="file" name="fileBankState" [(ngModel)]="selectBankState" #fileBankState class="form-control" style="width:86%" required id="imageInput" (change)="onUploadBankState($event)">
+                                        <button style="border: none;" (click)="openBankState(imagePreviewBankState)">
+                                            Preview
+                                        </button>
+                                    </div>
+                                    <div *ngIf="!selectBankState && isNextClicked" class="invalidparam">
+                                        Bank Statement Proof is Require
+                                    </div>
+
+
+                                    <ng-template #imagePreviewBankState>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Image Preview</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img [src]="urlForBankState" width="1180" alt="Image Preview">
+                                        </div>
+
+                                    </ng-template>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="note">
+                            <b>Note:</b>
+                            <p>Your name should be pre-printed on cheque leaf. Else, You have to upload a self attested copy of your latest bank statement, along with your cancelled cheque leaf (maximum file size 1MB)</p>
+                            <p>Tovalidate your name, we will credit Re.1.00 to your bank account</p>
+                        </div>
+                        <div class="div8">
+                            <div style="width: 45%;">
+                                <label>Upload Signature </label><br />
+                                <div>
+                                    <div style="display:flex">
+
+                                        <input type="file" name="fileSign" [(ngModel)]="selectSign" #fileSign class="form-control" style="width:86%" required id="imageInput" (change)="onUploadSign($event)">
+                                        <button style="border: none;" (click)="openSign(imagePreviewSign)">
+                                            Preview
+                                        </button>
+                                    </div>
+                                    <div *ngIf="!selectSign && isNextClicked" class="invalidparam">
+                                        Signature is Required
+                                    </div>
+
+
+                                    <ng-template #imagePreviewSign>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Image Preview</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img [src]="urlForSign" width="1180" alt="Image Preview">
+                                        </div>
+
+                                    </ng-template>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="note">
+                            <b>Notes :Download the signature upload format, tick the appropriate box, sign and upload the entire page image.</b>
+                            <p>Upload file with .pdf .jpg .png and .bmp extension.(maximum file size 2MB)</p>
+                        </div>
+                    </div>
+                    <div class="submitdiv">
+
+                        <button class="submitbut" type="submit" (click)="[uploadSign(fileSign.files),uploadStatement(fileBankState.files),uploadCheque(cancelCheque.files),submitBankDetails(bankDetails)]">NEXT</button>
+
+
+                    </div>
+
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <app-master-footer></app-master-footer>
+</body>

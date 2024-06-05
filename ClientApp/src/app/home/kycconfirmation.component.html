@@ -1,0 +1,164 @@
+﻿<!--<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>-->
+<app-master-header></app-master-header><br />
+
+<div class="main-card container">
+    <div class="card-label">
+        <label for="">Individual - <span>KYC Confirmation</span></label>
+    </div>
+    <div class="card_heading">
+        <div class="card_body" (click)="KycConfirmation()">
+            <label for="">Provide PAN to verify KYC details</label>
+            <span class="open-close-icon">
+                <i class="fas fa-plus" *ngIf="Expand"></i>
+                <i class="fas fa-minus" *ngIf="Collapse"></i>
+            </span>
+        </div>
+
+        <div class="card_container" [ngClass]="{'expanded': Expanded}">
+            <form action="" #KycVerificationFrm="ngForm">
+                <div class="multi-form">
+                    <div class="sections">
+                        <div class="common-section">
+                            <label class="form-label">PAN No.</label>
+                            <input type="text" class="form-control" [(ngModel)]="PAN" #panNum="ngModel" name="panNum" [pattern]="PanPattern" placeholder="PAN Number" [disabled]="frmPanKyc" onkeypress="if (this.value.length == 10) return false;" oninput="this.value = this.value.toUpperCase()" required>
+                            <div class="text-danger" *ngIf="(KycVerificationFrm.submitted && panNum.errors?.required) || (panNum.errors?.required && panNum.touched)">PAN Number is required</div>
+                            <div class="text-danger" *ngIf="(KycVerificationFrm.submitted && panNum.errors?.pattern)">PAN Number should 10 Letter(AlphaNumeric).</div>
+
+                            <div>
+                                <label>Upload Pan Proof</label><br />
+                                <div>
+                                    <div style="display:flex">
+
+                                        <input type="file" name="filePan" [(ngModel)]="selectPan" [disabled]="frmPanKyc" #filePan class="form-control" style="width:86%" required id="imageInput" (change)="onUploadPan($event)">
+                                        <button style="border: none;" (click)="openPan(imagePreviewPan)">
+                                            Preview
+                                        </button>
+                                    </div>
+                                    <div *ngIf="!selectPan && isNextClicked" class="text-danger">
+                                        Pan Proof is Require
+                                    </div>
+
+
+
+                                    <ng-template #imagePreviewPan>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Image Preview</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img [src]="urlForPan" width="1180" alt="Image Preview">
+                                        </div>
+
+                                    </ng-template>
+
+
+                                </div>
+
+                            </div>
+
+                            <input type="checkbox" class="Agreement_CheckBox" name="forCheckBox" #forCheckBox [disabled]="frmPanKyc" required>
+                            <small id="small">&nbsp;I hereby Authorize to fecth my data from the KYC Registration Agency (KRA)</small>
+                            <div class="text-danger" *ngIf="(KycVerificationFrm.submitted && forCheckBox.errors?.required) || (forCheckBox.errors?.required && forCheckBox.touched)">Checkbox is required</div>
+                            <div class="common-section-captcha">
+                                <label class="form-label">Captcha</label>
+                                <div id="common-section-1">
+                                    <div class="captcha_img">
+                                        <span class="captacha"></span>
+                                    </div>
+                                    <button class="Recaptcha" (click)="reloadBtn()">
+                                        <i style='font-size:16px' class='fas'>&#xf2f9;</i> &nbsp;Change Image
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="common-section">
+                            <label class="form-label">Date of Birth</label>
+                            <label for="" style="float:right; font-weight:400; font-size: 15px;">(DD/MM/YYYY)</label>
+                            <input type="date" class="form-control" [(ngModel)]="DOB" #dob="ngModel" name="dob" [disabled]="frmPanKyc" required>
+                            <div class="text-danger" *ngIf="(KycVerificationFrm.submitted && dob.errors?.required) || (dob.errors?.required && dob.touched)">Select Your Date of Birth</div>
+
+                            <div class="common-section-captcha" id="common-section-captcha">
+                                <input type="text" id="captcha" class="form-control" [(ngModel)]="CaptchaCode" #Captchafor="ngModel" name="Captchafor" placeholder="Enter image code" [disabled]="frmPanKyc" required>
+                                <div class="text-danger" *ngIf="(KycVerificationFrm.submitted && Captchafor.errors?.required) || (Captchafor.errors?.required && Captchafor.touched)"></div>
+                                <!---->
+                                <button type="submit" class="fetchBtn" (click)="[uploadPan(filePan.files),Verify_PanKyc(KycVerificationFrm)]" [disabled]="frmPanKyc">Fetch Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <form action="" #KycRegistrationFrm="ngForm">
+        <div class="card_heading">
+            <div class="card_body" (click)="KycDeatails()">
+                <label for="">Your KYC Details</label>
+                <span class="open-close-icon">
+                    <i class="fas fa-plus" *ngIf="Details_Expand"></i>
+                    <i class="fas fa-minus" *ngIf="Details_Collapse"></i>
+                </span>
+            </div>
+
+            <div class="card_container" [ngClass]="{'expanded': isExpanded}">
+                <div class="multi-form">
+                    <div class="sections">
+                        <div class="common-section">
+                            <label class="form-label">Client Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="ClientName" #Clientname="ngModel" name="Clientname" [pattern]="ClientNamePattern" placeholder="Client Name" [disabled]="true" required>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && Clientname.errors?.required) || (Clientname.errors?.required && Clientname.touched)">Enter Your Name</div>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && Clientname.errors?.pattern)">First Letter Must be Uppercase</div>
+
+                            <label id="padding-top" class="form-label">Annual Income</label>
+                            <select class="form-control" [(ngModel)]="AnnunalIncome" #Annualincome="ngModel" name="Annualincome" id="" [disabled]="frmKycReg" required>
+                                <option value="undefined" disabled selected hidden>--Select--</option>
+                                <ng-container *ngFor="let item of AnnunalIncomeList">
+                                    <option value="{{item.Id}}">{{item.AnnualIncome}}</option>
+                                </ng-container>
+                            </select>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && Annualincome.errors?.required) || (Annualincome.errors?.required && Annualincome.touched)">Enter Your Name</div>
+
+                            <label id="padding-top" class="form-label">Mother Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="MotherName" #Mothername="ngModel" name="Mothername" placeholder="Mother Name" [disabled]="frmKycReg" required>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && Mothername.errors?.required) || (Mothername.errors?.required && Mothername.touched)">Enter Your Name</div>
+
+                        </div>
+                        <div class="common-section">
+                            <label class="form-label">Marital Status</label>
+                            <div class="marital_status">
+                                <input type="radio" class="" [(ngModel)]="MaritalStatus" #marital_status="ngModel" name="marital_status" value="Married" [disabled]="frmKycReg" required>
+                                <label for="">Married</label>
+                                <input type="radio" class="" [(ngModel)]="MaritalStatus" #marital_status="ngModel" name="marital_status" value="Unmarried" [disabled]="frmKycReg" required>
+                                <label for="">Unmarried</label>
+                            </div>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && marital_status.errors?.required) || (marital_status.errors?.required && marital_status.touched)">Select Marital Status</div>
+
+                            <label id="padding-top" class="form-label">Occupation</label>
+                            <select class="form-control" [(ngModel)]="Occupation" #occupation="ngModel" name="occupation" id="" [disabled]="frmKycReg" required>
+                                <option value="undefined" disabled selected hidden>--Select--</option>
+                                <ng-container *ngFor="let item of OccpationList">
+                                    <option value="{{item.Id}}">{{item.OccupationName}}</option>
+                                </ng-container>
+                            </select>
+                            <div class="text-danger" *ngIf="(KycRegistrationFrm.submitted && occupation.errors?.required) || (occupation.errors?.required && occupation.touched)">Enter Your Name</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container" id="card_container">
+            <button type="submit" (click)="UpdatedClientDetails(KycVerificationFrm,KycRegistrationFrm)">NEXT&nbsp;<i style='font-size: 17px' class='fas'>&#xf061;</i></button>
+        </div>
+    </form>
+</div>
+<br />
+
+<app-master-footer></app-master-footer>

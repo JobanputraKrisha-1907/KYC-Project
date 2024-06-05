@@ -1,0 +1,312 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete PAGE</title>
+</head>
+<body>
+
+    <section>
+        <div class="box">
+
+            <div class="container box1">
+                <!-----------------start-------------------->
+                <!--Delete BANK-->
+                <div *ngIf="str==='bank'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Bank Data</span></h5>
+                    <p class="text-center">Enter Bank Name to Delete Bank in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':bankname.touched && bankname.invalid || bankname.invalid && submitted}" [(ngModel)]="BankName" #bankname="ngModel" name="bankname" placeholder="Enter Bank Name.." required />
+                            <span class="text-danger" *ngIf="bankname.touched && bankname.invalid || bankname.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchBank(bankname)">Search</button>
+                    </div><br />
+
+                    <div *ngIf="tbldelbank">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Bank Name</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of BankData">
+                                    <th scope="row">{{item.BankName}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteBank(item.BankId)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!--Delete IFSC-->
+                <div *ngIf="str==='ifsc'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">IFSC Data</span></h5>
+                    <p class="text-center">Enter IFSC Code to Find IFSC Code of Bank in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':ifsc.touched && ifsc.invalid || ifsc.invalid && submitted}" [pattern]="IFSCpattern" [(ngModel)]="IFSC" #ifsc="ngModel" name="ifsc" placeholder="Enter IFSC Code.." required />
+                            <span class="text-danger" *ngIf="ifsc.touched && ifsc.errors?.required || ifsc.errors?.required && submitted">Please Enter IFSC Code </span>
+                            <span class="text-danger" *ngIf="ifsc.errors?.pattern && ifsc.touched || ifsc.errors?.pattern && submitted">Please Enter Valid IFSC Code </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchIfsc(ifsc)">Search</button>
+                    </div><br />
+                    <div class="table-responsive" *ngIf="tbldelifsc">
+                        <table class="table table-striped">
+                            <tbody *ngFor="let item of IfscData">
+                                <tr>
+                                    <th>Bank Name</th>
+                                    <td>{{item.BankID}}</td>
+                                </tr>
+                                <tr>
+                                    <th>IFSC Code</th>
+                                    <td>{{item.IFSCCode}}</td>
+                                </tr>
+                                <tr>
+                                    <th>MICR Code</th>
+                                    <td>{{item.MICRCode}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bank Branch</th>
+                                    <td>{{item.BankBranch}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bank City</th>
+                                    <td>{{item.BankCity}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bank Address</th>
+                                    <td>{{item.BankAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Action</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteIfsc(item.IFSCCode)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--Delete COUNTRY-->
+                <div *ngIf="str==='country'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Country Data</span></h5>
+                    <p class="text-center">Enter Country Name to Delete Country in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':countryname.touched && countryname.invalid || countryname.invalid && submitted}" [(ngModel)]="CountryName" #countryname="ngModel" name="countryname" placeholder="Enter Country Name.." required />
+                            <span class="text-danger" *ngIf="countryname.touched && countryname.invalid || countryname.invalid && submitted">Please Enter Country Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchCountry(countryname)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelcountry">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Country Name</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of CountryData">
+                                    <th scope="row">{{item.CountryName}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteCountry(item.CountryId)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Delete State-->
+                <div *ngIf="str==='state'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">State Data</span></h5>
+                    <p class="text-center">Enter State Name to Delete State in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':statename.touched && statename.invalid || statename.invalid && submitted}" [(ngModel)]="StateName" #statename="ngModel" name="statename" placeholder="Enter State Name.." required />
+                            <span class="text-danger" *ngIf="statename.touched && statename.invalid || statename.invalid && submitted">Please Enter State Name </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchState(statename)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelstate">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of StateData">
+                                    <th scope="row">{{item.CountryId}}</th>
+                                    <th scope="row">{{item.StateName}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteState(item.StateId)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Delete AddressType-->
+                <div *ngIf="str==='DeleteaddressType'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Address Type Data</span></h5>
+                    <p class="text-center">Enter Address Type to Delete Address Type in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':addresstype.touched && addresstype.invalid || addresstype.invalid && submitted}" [(ngModel)]="AddressType" #addresstype="ngModel" name="addresstype" placeholder="Enter address Type.." required />
+                            <span class="text-danger" *ngIf="addresstype.touched && addresstype.invalid || addresstype.invalid && submitted">Please Enter Address Type </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchAddressType(addresstype)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldeladdrestype">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Address Type</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SAddressTypeData">
+                                    <th scope="row">{{item.AddressType}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteAddressType(item.Id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <!--Delete annual Income-->
+                <div *ngIf="str==='annualIncome'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Annual Income Data</span></h5>
+                    <p class="text-center">Enter Annual Income to Delete Annual Income in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':annualincome.touched && annualincome.invalid || annualincome.invalid && submitted}" [(ngModel)]="annualIncome" #annualincome="ngModel" name="annualincome" placeholder="Enter Annual Income.." required />
+                            <span class="text-danger" *ngIf="annualincome.touched && annualincome.invalid || annualincome.invalid && submitted">Please Enter Annual Income </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchAnnualIncome(annualincome)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldelannualincome">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Annual Income</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SAnnualIncomeData">
+                                    <th scope="row">{{item.AnnualIncome}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteAnnualIncome(item.Id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+                <!--Delete occupation-->
+                <div *ngIf="str==='occupation'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Occupation Data</span></h5>
+                    <p class="text-center">Enter Occupation to Delete Occupation in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':occupation.touched && occupation.invalid || occupation.invalid && submitted}" [(ngModel)]="Occupation" #occupation="ngModel" name="occupation" placeholder="Enter Occupation..." required />
+                            <span class="text-danger" *ngIf="occupation.touched && occupation.invalid || occupation.invalid && submitted">Please Enter Occupation </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchOccupation(occupation)">Search</button>
+                    </div><br />
+                    <div class="table-responsive-md" *ngIf="tbldeloccupation">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Occupation Name</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SOccupationData">
+                                    <th scope="row">{{item.OccupationName}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteOccupation(item.Id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--Delete Source of income-->
+                <div *ngIf="str==='sourceOfWealth'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Delete </span><span style="color: #ee6c1f">Source of Wealth Data</span></h5>
+                    <p class="text-center">Enter Source Of Wealth to Delete Source Of Wealth in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center" [ngClass]="{'is-invalid':sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted}" [(ngModel)]="SourceOfWealth" #sourceofwealth="ngModel" name="sourceofwealth" placeholder="Enter Source of wealth.." required />
+                            <span class="text-danger" *ngIf="sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted">Please Enter Source of wealth </span>
+                        </div>
+                        <button class="btn btn-outline-primary mt-3" type="submit" (click)="clickSearchSourceOfWealth(sourceofwealth)">Search</button>
+                    </div>
+                    <br />
+                    <div class="table-responsive-md" *ngIf="tbldelsourceofwealth">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Source of weatlh</th>
+                                    <th scope="col">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.SSourceOfWealthData">
+                                    <th scope="row">{{item.SourceOfWealth}}</th>
+                                    <td><button class="btn btn-outline-danger" type="submit" (click)="clickDeleteSourceOfWealth(item.Id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!-----------End--------------->
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<app-master-footer></app-master-footer>
+
+

@@ -1,0 +1,229 @@
+﻿label {
+    font-weight: 500;
+    display: unset;
+}
+
+.LabelAddData {
+    width: 100%
+}
+
+input[type='text'], select {
+    height: 32px;
+    border: 1px solid lightgray
+}
+
+    input[type='text']:focus, select:focus {
+        outline: none;
+        height: 32px;
+        border-color: lightgray
+    }
+
+.PEP {
+    background-color: white;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0 0 10px 1px lightgray;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #EBEEF4;
+    padding-right: 80px;
+    padding-left: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+    margin: 0px;
+}
+
+#PEPques {
+    font-weight: 500;
+    text-align: center;
+    color: black;
+    float: right
+}
+
+.FatcaMessage {
+    border: 1px dashed lightgray;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+input[type='checkbox'], input[type='radio'] {
+    background-color: aqua !important
+}
+
+.FatcaMessage3 {
+    padding-top: 15px;
+    font-weight: 500;
+    padding-bottom: 100px
+}
+
+.FatcaHead {
+    background-color: antiquewhite;
+    margin-top: 12px;
+    height: 34px;
+    font-size: 20px;
+    font-weight: normal !important;
+}
+
+input[type=radio]:checked {
+    /*accent-color: blue;*/ /*accent-color: blue;*/
+}
+
+a {
+    color: orangered;
+    text-decoration-style: dashed;
+    text-decoration-line: underline;
+    text-decoration-thickness: from-font;
+    cursor: pointer;
+}
+
+.NextPg {
+    background-color: #1d4189;
+    border: none;
+    color: white;
+    float: right;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+#fatcaDetails {
+    overflow: hidden;
+    transition: height 200ms;
+    transition-delay: 5s;
+    border: 2px solid lightgrey;
+    padding: 10px
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    display: inline
+}
+
+.col-4, .fatcamsg, .FatcaMessage {
+    margin-top: 10px !important
+}
+
+@media (max-width:500px) {
+    body {
+        background-color: #EBEEF4;
+        padding: 10px 10px 10px 10px;
+        font-size: 13px;
+        margin: 0px;
+    }
+
+    *, ::after {
+        box-sizing: unset
+    }
+
+    .PEP {
+        display: grid;
+        grid-template-areas:
+            'header'
+            'PEPQ  '
+            'LabelAddressData '
+            'LabelPOBDa  '
+            'LabelSOWData'
+            'LabelCOBDa '
+            'Tax  '
+            'COT  '
+            'msg  '
+            'msg  '
+            'fatcamsg  '
+            'FatcaMessage ';
+    }
+
+    header {
+        grid-area: header;
+        display: unset
+    }
+
+    #PEPQ {
+        grid-area: PEPQ;
+        display: unset
+    }
+
+    .LabelAddressData {
+        grid-area: LabelAddressData;
+        display: unset
+    }
+
+    .LabelSOWData {
+        grid-area: LabelSOWData;
+        display: unset
+    }
+
+    .LabelCOBDa {
+        grid-area: LabelCOBDa;
+        display: unset
+    }
+
+    .NationalityData {
+        grid-area: NationalityData;
+        display: unset
+    }
+
+    .Tax {
+        grid-area: Tax;
+        display: unset
+    }
+
+    .COT {
+        grid-area: COT;
+        display: unset
+    }
+
+    .TINo {
+        grid-area: TINo;
+        display: unset
+    }
+
+    .TIT {
+        grid-area: TIT;
+        display: unset
+    }
+
+    .msg {
+        grid-area: msg;
+        display: unset
+    }
+
+    .fatcamsg {
+        grid-area: fatcamsg;
+        display: unset
+    }
+
+    .FatcaMessage3 {
+        grid-area: FatcaMessage;
+        display: unset
+    }
+
+    .LabelPOBDa {
+        grid-area: LabelPOBDa;
+        display: unset
+    }
+
+    .row {
+        display: unset;
+    }
+
+    .col-12 {
+        padding-right: 0px;
+        padding-left: 0px !important;
+    }
+
+    .LabelAddData {
+        width: 100%
+    }
+
+    .col-4 {
+        padding-left: 0px
+    }
+
+    .LabelAddress, .LabelCOB {
+        padding-left: 20px
+    }
+}

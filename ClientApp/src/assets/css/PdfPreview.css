@@ -1,0 +1,45 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+section {
+    padding: 25px 30px 25px 110px;
+    background-color: #EBEEF4;
+}
+
+.box {
+    background-color: #f9f5f3;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 0 10px 1px lightgray;
+}
+
+.para1 {
+    font-size: 13px;
+    text-align: center;
+}
+
+.orange {
+    color: #ee6c1f;
+}
+
+.btn-orange {
+    background-color: darkorange;
+    color: white;
+    width: 135px;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+}
+
+.pdfView {
+    margin: 20px 20px;
+    border: 6px solid white;
+    border-radius: 7px;
+}

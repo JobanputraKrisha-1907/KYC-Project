@@ -1,0 +1,191 @@
+﻿
+<app-header></app-header>
+<app-loader *ngIf="loading"></app-loader>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<div class="main">
+
+    <div class="card text-center shadow rounded-10" style=" width: 1125px; margin: auto; ">
+        <ul style="">
+            <li class="active">
+                <a href="">
+                    <div style="margin-left:250px"></div>
+                </a>
+            </li>
+            <li class="active">
+                <a href="">
+                    <div></div>
+                </a>
+            </li>
+            <li class="active">
+                <a href="">
+                    <div></div>
+                </a>
+            </li>
+            <li class="active">
+                <a href="">
+                    <div></div>
+                </a>
+            </li>
+        </ul>
+        <div>
+
+            <!--<cd-timer countdown="true" [startTime]="30" format="intelli" *ngIf="LoadTimer"> </cd-timer>-->
+            <div class="main1">
+                <div class="card1">
+                    <b style="font-size: 20px;"> <span style="color:orange;">Individual-</span>Registration </b>
+                    <!--<div style=" position: absolute; top: 120px; right: 35px;" *ngIf="For_Timer">
+
+                            <div class="alert alert-danger" role="alert">
+                                Your Otp is Expire in : <cd-timer countdown="true" [startTime]="30" format="intelli" #basicTimer style="color:black"> </cd-timer>
+                            </div>
+                        </div>
+                        <div style=" position: absolute; top: 120px; right: 35px;" *ngIf="For_Div_Mobile">
+
+                        <div class="alert alert-danger" role="alert">
+                            Your Otp is Expire in : <cd-timer countdown="true" [startTime]="30" format="intelli" #basicTimer style="color:black"> </cd-timer>
+                        </div>
+                    </div>-->
+                    <form #frmRegister1="ngForm">
+                        <div>
+
+                            <label class="form-label">
+                                <b>
+                                    Name
+                                </b>
+                            </label>
+                            <input [(ngModel)]="name" #txtname="ngModel" type="text" name="txtname" placeholder="Name" class="form-control" [pattern]="NamePattern" required [disabled]="disableName" />
+                            <div *ngIf="(frmRegister1.submitted && txtname.errors?.required)||(txtname.errors?.required && txtname.touched)" class="text-danger">Name is required</div>
+                            <div *ngIf="txtname.errors?.pattern" class="text-danger">
+                                Enter Valid  Name
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="for-flex">
+                        <div class="for-width">
+                            <form #frmRegister2="ngForm">
+
+
+                                <div>
+
+                                    <label class="form-label"><b>Email</b></label>
+                                    <input [(ngModel)]="email" #txtemail="ngModel" type="text" (focusout)='onFocus()' (focusin)="isFocus = true" name="txtemail" placeholder="Enter your Email" class="form-control" [pattern]="EmailPattern" required [disabled]="disableEmail" />
+                                    <div *ngIf="(frmRegister2.submitted && txtemail.errors?.required)||(txtemail.errors?.required && txtemail.touched)" class="text-danger">Email is required</div>
+                                    <div *ngIf="txtemail.errors?.pattern" class="text-danger">
+                                        Enter Valid Email
+                                    </div>
+                                    <div *ngIf="accepted == true && !isFocus && email !== ''" class="text-danger">
+                                        Your email is already registered with us.
+                                    </div>
+                                    <div *ngIf="accepted == false && !isFocus && email !== '' " class="text-success">
+                                        Email id is available..!!
+                                    </div>
+
+                                    <small style="font-size:10px">*Verify authenticity of your mail by entering OTP sent on your Email</small>
+                                    <div class="verifyuser">
+                                        <button class="verify-btn-Edit" (click)="toShowField()" [hidden]="showEmail" [disabled]="disableEdit">Edit</button>
+                                        <button class="verify-btn" (click)="toEnable()" [hidden]="hideEmail">Verify</button>
+                                        <input class='otp-input' [ngClass]="{'forOpacity':statusEmail}" [(ngModel)]="emailotp" #txtemailotp="ngModel" name="txtemailotp" type="number" placeholder="Enter OTP" required onkeypress="if (this.value.length == 6) return false;" [maxlength]="6" [disabled]="!disabledbox" />
+                                        <button class='resend-btn' [ngClass]="{'forOpacity':statusEmail}" [disabled]="!disabledresendbtn" (click)="toResendEmailOtp()" [hidden]="resendbtnhide">
+                                            <span class="resend-span">
+                                                <i style="font-size:16px" class="fa">&#xf021;</i>
+                                                Resend OTP
+                                            </span>
+                                        </button>
+                                        <button class='confirm-btn' [ngClass]="{'forcnfBtn':statusEmail}" [disabled]="!disabledbox" (click)="toEnablemobile()">Confirm</button>
+                                    </div>
+                                    <div style="margin-left: 120px;" *ngIf="emailotpIsNull == true &&((frmRegister2.submitted && txtemailotp.errors?.required)||(txtemailotp.errors?.required && txtemailotp.touched))" class="text-danger">Otp Is Required</div>
+
+                                </div>
+                                <div>
+
+                                    <div class="alert alert-warning" role="alert" *ngIf="For_Div_Email">
+                                        Otp is Send to the Email Id <br /><span>{{emailOtpCount + 1}} Attempt Remaining</span>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="for-width">
+                            <form #frmRegister3="ngForm">
+
+                                <label class="form-label"><b>Mobile</b></label>
+                                <input [(ngModel)]="mobile" #txtmobile="ngModel" type="number" name="txtmobile" (focusout)='onFocusMobile()' (focusin)="isFocusMo = true;" placeholder="Enter your Mobile no" class="form-control" [pattern]="MobilePattern" onkeypress="if (this.value.length == 10) return false;" required [disabled]="!disbox" />
+                                <div *ngIf="(frmRegister3.submitted && txtmobile.errors?.required)||(txtmobile.errors?.required && txtmobile.touched)" class="text-danger">Mobile No is required</div>
+                                <div *ngIf="txtmobile.errors?.pattern" class="text-danger">
+                                    Enter Valid Mobile No.
+                                </div>
+                                <div *ngIf="for_Mobile_open == true && !isFocusMo && mobile !== ''" class="text-danger">
+                                    Your Mobile is already registered with us.
+                                </div>
+                                <div *ngIf="for_Mobile_open == false && !isFocusMo && mobile !== '' " class="text-success">
+                                    Mobile Number is available..!!
+                                </div>
+                                <small style="font-size:10px ">*Verify authenticity of your mail by entering OTP sent on your Email</small>
+
+                                <div class="verifyuser">
+                                    <button class="verify-btn-Edit" (click)="toShowFieldMobile()" [hidden]="showMobile" [disabled]="disableMobileEdit">Edit</button>
+                                    <button class="verify-btn" [disabled]="!disboxverify" (click)="toEnablemobverifier()" [hidden]="hideMobile">Verify</button>
+                                    <input [ngClass]="{'forOpacity':statusMobile}" [(ngModel)]="mobileotp" #txtmobileotp="ngModel" name="txtmobileotp" type="number" placeholder="Enter OTP" class="otp-input" required [disabled]="!dismobotpcntrl" onkeypress="if (this.value.length == 6) return false;" />
+                                    <button class="resend-btn" [ngClass]="{'forOpacity':statusMobile}" [disabled]="!for_resend_Mobile_btn" (click)="for_Resend_Mobileotp()">
+                                        <span class="resend-span">
+                                            <i style="font-size:16px" class="fa">&#xf021;</i>
+                                            Resend OTP
+                                        </span>
+                                    </button>
+                                    <button class="confirm-btn" [ngClass]="{'forcnfBtn ':statusMobile}" [disabled]="!dismobotpcntrl" (click)="toEnablepassinput()">Confirm</button>
+                                </div>
+                                <div style="margin-left: 120px;" *ngIf="mobileotpIsNull == true &&((frmRegister3.submitted && txtmobileotp.errors?.required)||(txtmobileotp.errors?.required && txtmobileotp.touched))" class="text-danger">Otp Is Required</div>
+
+                                <div>
+
+                                    <div class="alert alert-warning" role="alert" *ngIf="For_Div_Mobile">
+                                        Otp is Send to the Mobile Number  <br /><span>{{mobileOtpCount + 1}} Attempt Remaining</span>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <form #frmRegister4="ngForm">
+                            <div class="for-flex">
+                                <div class="for-width">
+                                    <label class="form-label"><b>Password</b></label>
+                                    <input [(ngModel)]="pass" #txtpass="ngModel" type="password" name="txtpass" placeholder="Enter password " class="form-control" pattern="(^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,12}$)" [disabled]="!dispassinput" required />
+                                    <div *ngIf="(frmRegister4.submitted && txtpass.errors?.required)||(txtpass.errors?.required && txtpass.touched)" class="text-danger">Password is required</div>
+                                    <div *ngIf="(txtpass.errors?.pattern)" class="text-danger">Enter minimum 8 and maximum 12 (1 special character, 1 digit, 1 captial letter,1 small letter)</div>
+                                </div>
+                                <div class="for-width">
+                                    <label class="form-label"><b>Confirm Password</b></label>
+                                    <input type="password" [(ngModel)]="confirmPassword" #cnfpass="ngModel" name="cnfpass" placeholder="Confirm password" class="form-control" [disabled]="!dispassinput" required />
+
+                                    <div *ngIf="(frmRegister4.submitted && cnfpass.errors?.required)||(cnfpass.errors?.required && cnfpass.touched)" class="text-danger">Confirm Password is required</div>
+                                    <div *ngIf="cnfpass.dirty && pass !== confirmPassword" class="text-danger">Password not match</div>
+                                </div>
+                            </div>
+
+
+
+                            <br />
+                            <button class="NextBtn" (click)="submitdata(frmRegister1,frmRegister2,frmRegister3,frmRegister4)" [disabled]="!disnext">
+                                Next <i style="font-size:15px; color:white;" class='fa fa-arrow-right'></i>
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

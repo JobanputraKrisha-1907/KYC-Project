@@ -1,0 +1,29 @@
+﻿
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="container for-navbar-flex ">
+    <div>
+        <img class="fund-logo" src="/assets/img/fundzbazarlogo.svg" alt="Fundbazar logo" />
+    </div>
+    <div>
+        <ul class="for-link-flex">
+            <li>
+                <a [routerLink]="['/']">Home</a>
+            </li>
+            <li>
+                <a [routerLink]="['/counter']">About Us</a>
+            </li>
+            <li>
+                <a [routerLink]="['/fetch-data']">Products</a>
+            <li>
+                <a [routerLink]="['/counter']">Explorer</a>
+            </li>
+            <li>
+                <button class="login-btn" [routerLink]="['/']">Login</button>
+            </li>
+        </ul>
+    </div>
+</div>
+

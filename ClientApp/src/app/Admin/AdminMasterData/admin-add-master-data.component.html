@@ -1,0 +1,156 @@
+﻿<app-master-header></app-master-header>
+<app-admin-master-nav></app-admin-master-nav>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADD PAGE</title>
+</head>
+<body>
+
+    <section>
+        <div class="box">
+
+            <div class="container box1">
+                <!-----------------start-------------------->
+                <!--ADD BANK-->
+                <div *ngIf="str==='bank'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">Bank Data</span></h5>
+                    <p class="text-center">Enter Bank Name to Insert New Bank in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':bankname.touched && bankname.invalid || bankname.invalid && submitted}" [(ngModel)]="BankName" #bankname="ngModel" name="bankname" placeholder="Enter Bank Name.." required />
+                            <span class="text-danger invalid-feedback" *ngIf="bankname.touched && bankname.invalid || bankname.invalid && submitted">Please Enter Bank Name </span>
+                        </div>
+
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddBank(bankname)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD IFSC-->
+                <div *ngIf="str==='ifsc'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">IFSC Data</span></h5>
+                    <p class="text-center">Enter IFSC Code to Find New Bank in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <form #Ifscdetails="ngForm" (ngSubmit)="clickAddIfsc(Ifscdetails)">
+                                <select class="form-control text-center is-invalid" [ngClass]="{'is-invalid':SelectBank=='Select' && selectbank.dirty || selectbank.touched && selectbank.pristine}" [(ngModel)]="SelectBank" #selectbank="ngModel" name="selectbank" required>
+                                    <option value="Select" selected>Select Bank</option>
+                                    <ng-container *ngFor="let item of data">
+                                        <option value="{{item.BankId}}">{{item.BankName}}</option>
+                                    </ng-container>
+                                </select>
+                                <span class="text-danger  invalid-feedback" *ngIf="selectbank.touched && selectbank.pristine || selectbank.pristine && submitted">Please Select Bank  </span>
+                                <input type="text" class="form-control text-center is-invalid mt-2" [ngClass]="{'is-invalid':ifsc.touched && ifsc.invalid || ifsc.invalid && submitted }" [(ngModel)]="IFSC" #ifsc="ngModel" name="ifsc" placeholder="Enter IFSC Code.." required [pattern]="IFSCpatternp" />
+                                <span class="text-danger  invalid-feedback" *ngIf="ifsc.touched && ifsc.errors?.required || ifsc.errors?.required && submitted">Please Enter IFSC Code </span>
+                                <span class="text-danger  invalid-feedback" *ngIf="ifsc.touched && ifsc.errors?.pattern && ifsc.value || ifsc.errors?.pattern && submitted && ifsc.value">Please Valid IFSC Code </span>
+                                <input type="text" class="form-control text-center is-invalid mt-2" [ngClass]="{'is-invalid':micr.touched && micr.invalid || micr.invalid && submitted}" [(ngModel)]="MICR" #micr="ngModel" name="micr" placeholder="Enter MICR Code.." />
+                                <span class="text-danger  invalid-feedback" *ngIf="micr.touched && micr.invalid || micr.invalid && submitted">Please Enter MICR Code </span>
+                                <input type="text" class="form-control text-center is-invalid mt-2" [ngClass]="{'is-invalid':bankbranch.touched && bankbranch.invalid || bankbranch.invalid && submitted}" [(ngModel)]="BankBranch" #bankbranch="ngModel" name="bankbranch" placeholder="Enter Bank Branch .." required />
+                                <span class="text-danger  invalid-feedback" *ngIf="bankbranch.touched && bankbranch.invalid || bankbranch.invalid && submitted">Please Enter Bank Branch </span>
+                                <input type="text" class="form-control text-center is-invalid mt-2" [ngClass]="{'is-invalid':bankcity.touched && bankcity.invalid || bankcity.invalid && submitted}" [(ngModel)]="BankCity" #bankcity="ngModel" name="bankcity" placeholder="Enter BankCity.." />
+                                <span class="text-danger  invalid-feedback" *ngIf="bankcity.touched && bankcity.invalid || bankcity.invalid && submitted">Please Enter Bank City </span>
+                                <input type="text" class="form-control text-center is-invalid mt-2" [ngClass]="{'is-invalid':bankaddress.touched && bankaddress.invalid || bankaddress.invalid && submitted}" [(ngModel)]="BankAddress" #bankaddress="ngModel" name="bankaddress" placeholder="Enter Bank Address.." required />
+                                <span class="text-danger  invalid-feedback" *ngIf="bankaddress.touched && bankaddress.invalid || bankaddress.invalid && submitted">Please Enter Bank Address </span>
+                                <button class="btn btn-outline-success mt-3" type="submit">Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--ADD COUNTRY-->
+                <div *ngIf="str==='country'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f"> Country Data</span></h5>
+                    <p class="text-center">Enter Country Name to Add New Country in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':countryname.touched && countryname.invalid || countryname.invalid && submitted}" [(ngModel)]="CountryName" #countryname="ngModel" name="countryname" placeholder="Enter Country Name.." required />
+                            <span class="text-danger  invalid-feedback" *ngIf="countryname.touched && countryname.invalid || countryname.invalid && submitted">Please Enter Country Name </span>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddCountry(countryname)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD State-->
+                <div *ngIf="str==='state'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">State Data</span></h5>
+                    <p class="text-center">Select Country and Enter State Name to Add New State in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <form #stateform="ngForm">
+                                <select class="custom-select text-center is-invalid" [ngClass]="{'is-invalid':selectcountry.touched && selectcountry.pristine || selectcountry.pristine && submitted}" [(ngModel)]="SelectCountry" #selectcountry="ngModel" name="selectcountry" required>
+                                    <option value="Select" selected>Select Country</option>
+                                    <ng-container *ngFor="let item of data">
+                                        <option value="{{item.CountryId}}">{{item.CountryName}}</option>
+                                    </ng-container>
+                                </select>
+                                <span class="text-danger  invalid-feedback" *ngIf="selectcountry.touched && SelectCountry=='Select' || SelectCountry==null && submitted">Please Select Country Name </span>
+
+                                <input type="text" id="state" class="form-control text-center mt-3 is-invalid" [ngClass]="{'is-invalid':statename.touched && statename.invalid || statename.invalid && submitted}" [(ngModel)]="StateName" #statename="ngModel" name="statename" placeholder="Enter State Name.." required />
+                                <span class="text-danger invalid-feedback" *ngIf="statename.touched && statename.invalid || statename.invalid && submitted">Please Enter State Name </span>
+                            </form>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddState(stateform)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD Address type-->
+                <div *ngIf="str==='addressType'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">Address Type Data</span></h5>
+                    <p class="text-center">Enter Address Type to Add New Address Type in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [(ngModel)]="addressType" [ngClass]="{'is-invalid':addresstype.touched && addresstype.invalid || addresstype.invalid && submitted}" #addresstype="ngModel" name="addresstype" placeholder="Enter Address Type.." required />
+                            <span class="text-danger  invalid-feedback" *ngIf="addresstype.touched && addresstype.invalid || addresstype.invalid && submitted">Please Enter Address Type </span>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddAddressType(addresstype)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD Annual income-->
+                <div *ngIf="str==='annualIncome'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">Annual Income Data</span></h5>
+                    <p class="text-center">Enter Annual Income to Add New Annual Income in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':annualincome.touched && annualincome.invalid || annualincome.invalid && submitted}" [(ngModel)]="annualIncome" #annualincome="ngModel" name="annualincome" placeholder="Enter Annual Income.." required />
+                            <span class="text-danger  invalid-feedback" *ngIf="annualincome.touched && annualincome.invalid || annualincome.invalid && submitted">Please Enter Annual Income </span>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddAnnualIncome(annualincome)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD Occupation-->
+                <div *ngIf="str==='occupation'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">Occupation Data</span></h5>
+                    <p class="text-center">Enter Occupation to Add New Occupation in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':occupation.touched && occupation.invalid || occupation.invalid && submitted}" [(ngModel)]="Occupation" #occupation="ngModel" name="occupation" placeholder="Enter Occupation.." required />
+                            <span class="text-danger  invalid-feedback" *ngIf="occupation.touched && occupation.invalid || occupation.invalid && submitted">Please Enter Occupation </span>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddOccupation(occupation)">Submit</button>
+                    </div>
+                </div>
+
+                <!--ADD Source of wealth-->
+                <div *ngIf="str==='sourceOfWealth'">
+                    <h5 class="text-center p-4"><span style="color: rgba(20,60,129,255)">Add </span><span style="color: #ee6c1f">Source of Wealth Data</span></h5>
+                    <p class="text-center">Enter Source Of Wealth to Add New Source Of Wealth in Database</p>
+                    <div class="text-center">
+                        <div class="text-center m-auto width-set">
+                            <input type="text" class="form-control text-center is-invalid" [ngClass]="{'is-invalid':sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted}" [(ngModel)]="SourceOfWealth" #sourceofwealth="ngModel" name="sourceofwealth" placeholder="Enter Source of Wealth.." required />
+                            <span class="text-danger  invalid-feedback" *ngIf="sourceofwealth.touched && sourceofwealth.invalid || sourceofwealth.invalid && submitted">Please Enter Source of Wealth </span>
+                        </div>
+                        <button class="btn btn-outline-success mt-3" type="submit" (click)="clickAddSourceOfWealth(sourceofwealth)">Submit</button>
+                    </div>
+                </div>
+                <!-----------End--------------->
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<app-master-footer></app-master-footer>
+
+
